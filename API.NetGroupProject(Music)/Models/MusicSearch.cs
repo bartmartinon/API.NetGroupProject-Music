@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace API.NetGroupProject_Music_.Models
 {
 
+    
     public class MusicSearch
     {
         public Datum[] data { get; set; }
