@@ -22,6 +22,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
         public IActionResult MusicSearch()
         {
+            
             return View();
         }
        
