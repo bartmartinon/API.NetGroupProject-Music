@@ -25,8 +25,15 @@ namespace API.NetGroupProject_Music_.Controllers
 
             var result = await _dal.GetSearchAsync(album);
 
-            return View();
+            return View(result);
         }
-       
+
+        public async Task<IActionResult> GetAlbum(int id)
+        {
+            var result = await _dal.GetAlbumAsync(id);
+
+            return View(result);
+        }
+
     }
 }

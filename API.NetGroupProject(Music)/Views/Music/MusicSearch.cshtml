@@ -1,25 +1,13 @@
 
-﻿@*@model List<Datum>
+@model MusicSearch
+
+@foreach(Datum d in Model.data)
+{
+    <p>@d.title</p>
+    <p>@d.album.title <a asp-controller="Music" asp-action="GetAlbum" asp-route-id="@d.album.id">Get This Album Information</a></p>
+    @d.artist.name
+
+}
 
 
-    @foreach(Datum d in Model)
-    {
-        <p>@d.artist</p>
-        <p>@d.album</p>
-
-    }*@
-
-@model Datum1
-
-    <p>@Model.title</p>
-
-﻿@model API.NetGroupProject_Music_.Models.MusicSearch
-@*foreach(Datum d in Model)
-    {
-        <p>@d.artist</p>
-        <p>@d.album</p>
-
-    }*@
-
-@Html.DisplayFor(model => model.data)
 
