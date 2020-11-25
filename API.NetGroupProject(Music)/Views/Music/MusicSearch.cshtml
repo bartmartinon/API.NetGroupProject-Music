@@ -1,8 +1,13 @@
-﻿@model MusicSearch
+﻿@*@model List<Datum>
 
-@foreach(Datum d in Model)
-{
-    <p>@d.artist</p>
-    <p>@d.album</p>
 
-}
+    @foreach(Datum d in Model)
+    {
+        <p>@d.artist</p>
+        <p>@d.album</p>
+
+    }*@
+
+@model Datum1
+
+    <p>@Model.title</p>
