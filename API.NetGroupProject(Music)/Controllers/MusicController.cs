@@ -22,7 +22,9 @@ namespace API.NetGroupProject_Music_.Controllers
 
         public async Task<IActionResult> MusicSearchAsync(string album)
         {
+
             var result = await _dal.GetSearchAsync(album);
+
             return View();
         }
        

@@ -1,3 +1,4 @@
+
 ﻿@*@model List<Datum>
 
 
@@ -11,3 +12,14 @@
 @model Datum1
 
     <p>@Model.title</p>
+
+﻿@model API.NetGroupProject_Music_.Models.MusicSearch
+@*foreach(Datum d in Model)
+    {
+        <p>@d.artist</p>
+        <p>@d.album</p>
+
+    }*@
+
+@Html.DisplayFor(model => model.data)
+
