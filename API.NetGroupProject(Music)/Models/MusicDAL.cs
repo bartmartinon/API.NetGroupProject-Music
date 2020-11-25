@@ -32,12 +32,14 @@ namespace API.NetGroupProject_Music_.Models
             return result;
        } */
 
-        public async Task<MusicAlbum> GetSearchAsync()
+        public async Task<MusicSearch> GetSearchAsync()
         {
-            var response = await _client.GetAsync("Search");
-            var result = await response.Content.ReadAsAsync<MusicAlbum>(); //RootObject
+            var response = await _client.GetAsync("Search/2342");
+            var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
             return result;
         }
+
+        
 
         //public static string CallMusicAPI()
         // {

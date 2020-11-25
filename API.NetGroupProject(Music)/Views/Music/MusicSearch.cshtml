@@ -1,8 +1,9 @@
-﻿@model MusicSearch
+﻿@model API.NetGroupProject_Music_.Models.MusicSearch
+@*foreach(Datum d in Model)
+    {
+        <p>@d.artist</p>
+        <p>@d.album</p>
 
-@foreach(Datum d in Model)
-{
-    <p>@d.artist</p>
-    <p>@d.album</p>
+    }*@
 
-}
+@Html.DisplayFor(model => model.data)
