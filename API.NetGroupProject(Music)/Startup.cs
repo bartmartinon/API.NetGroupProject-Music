@@ -28,6 +28,14 @@ namespace API.NetGroupProject_Music_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<MusicDAL>(client =>
+            {
+                client.BaseAddress = new Uri("https//deezerdevs-deezer.p.rapidapi.com/");
+                client.DefaultRequestHeaders.Add("x-rapidapi-key", "0c5a25d7b8msh4dc575e5ff50912p1e72a9jsn404cc0b208f0");
+                client.DefaultRequestHeaders.Add("x-rapidapi-host", "deezerdevs-deezer.p.rapidapi.com");
+            });
+
+
             services.AddDbContext<MusicProjectDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -67,7 +75,7 @@ namespace API.NetGroupProject_Music_
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=MusicController}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
