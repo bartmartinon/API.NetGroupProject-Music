@@ -24,10 +24,11 @@ namespace API.NetGroupProject_Music_.Models
         {
             _client = client;
         }
+
        /* public async Task<List<MusicAlbum>> GetAlbumsAsync()
         {
-            var response = await _client.GetAsync("Albums");
-            var result = await response.Content.ReadAsAsync<List<MusicAlbum>>(); //RootObject
+            var response = await _client.GetAsync("album/82006");
+            var result = await response.Content.ReadAsAsync<MusicAlbum>(); //RootObject
             return result;
        } */
 
