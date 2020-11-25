@@ -16,7 +16,7 @@ namespace API.NetGroupProject_Music_.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var result = _dal.GetAlbumsAsync();
+            var result = await _dal.GetAlbumsAsync();
             return View();
         }
     }

@@ -30,8 +30,8 @@ namespace API.NetGroupProject_Music_
         {
             services.AddHttpClient<MusicDAL>(client =>
             {
-                client.BaseAddress = new Uri("https//deezerdevs-deezer.p.rapidapi.com/");
-                client.DefaultRequestHeaders.Add("x-rapidapi-key", "0c5a25d7b8msh4dc575e5ff50912p1e72a9jsn404cc0b208f0");
+                client.BaseAddress = new Uri("https://deezerdevs-deezer.p.rapidapi.com/");
+                client.DefaultRequestHeaders.Add("x-rapidapi-key", "7fedbe243fmshb7c467206720e79p135510jsn38a2a9fc8d2d");
                 client.DefaultRequestHeaders.Add("x-rapidapi-host", "deezerdevs-deezer.p.rapidapi.com");
             });
 
@@ -75,7 +75,7 @@ namespace API.NetGroupProject_Music_
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MusicController}/{action=Index}/{id?}");
+                    pattern: "{controller=Music}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
