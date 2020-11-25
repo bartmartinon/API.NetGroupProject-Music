@@ -15,8 +15,7 @@ namespace API.NetGroupProject_Music_.Models
         album,
         genre,
         artist,
-        track,
-        infos
+        track
     }
     public class MusicDAL
     {
@@ -25,32 +24,40 @@ namespace API.NetGroupProject_Music_.Models
         {
             _client = client;
         }
-        public async Task<List<MusicAlbum>> GetAlbumsAsync()
+       /* public async Task<List<MusicAlbum>> GetAlbumsAsync()
         {
             var response = await _client.GetAsync("Albums");
             var result = await response.Content.ReadAsAsync<List<MusicAlbum>>(); //RootObject
             return result;
-       }
-        //public static string CallMusicAPI()
-       // {
+       } */
 
-         //   string apiKey = Secret.OmbdKey;
-           // string endpoint;
+        public async Task<MusicAlbum> GetSearchAsync()
+        {
+            var response = await _client.GetAsync("Search");
+            var result = await response.Content.ReadAsAsync<MusicAlbum>(); //RootObject
+            return result;
+        }
+
+        //public static string CallMusicAPI()
+        // {
+
+        //   string apiKey = Secret.OmbdKey;
+        // string endpoint;
         //}
 
         //public async Task<List<MusicAlbum>> GetAlbumsAsync()
         //{
-          //  return await _client.GetFromJsonAsync<List<MusicAlbum>>("Albums");
+        //  return await _client.GetFromJsonAsync<List<MusicAlbum>>("Albums");
         //}
 
-      /*  public async Task<List<MusicAlbum>> GetAlbumsAsync()
-        {
-            var response = await _client.GetAsync("Albums");
-            var jsonresult = await response.Content.ReadAsStringAsync();
+        /*  public async Task<List<MusicAlbum>> GetAlbumsAsync()
+          {
+              var response = await _client.GetAsync("Albums");
+              var jsonresult = await response.Content.ReadAsStringAsync();
 
-            List<MusicAlbum> musicAlbums = JsonSerializer.Deserializer<List<MusicAlbum>>(JsonData);
-            return musicAlbums;
-        } */
+              List<MusicAlbum> musicAlbums = JsonSerializer.Deserializer<List<MusicAlbum>>(JsonData);
+              return musicAlbums;
+          } */
 
     }
 }
