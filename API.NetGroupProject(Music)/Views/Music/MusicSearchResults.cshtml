@@ -1,0 +1,8 @@
+﻿@model Album
+
+<h4>Results for Album ID: @Model.id</h4>
+<p><b>Title:</b> @Model.title</p>
+<img src="@Model.cover" alt="cover" />
+<img src="@Model.md5_image" alt="md5_image" />
+<p><b>Track List:</b> <a href=@Model.tracklist>@Model.tracklist</a></p>
+<p><b>Type:</b> @Model.type</p>
