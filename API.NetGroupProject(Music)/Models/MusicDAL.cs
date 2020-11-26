@@ -25,19 +25,25 @@ namespace API.NetGroupProject_Music_.Models
             _client = client;
         }
 
-       /* public async Task<List<MusicAlbum>> GetAlbumsAsync()
+        public async Task<Album> GetAlbumAsync(int id)
         {
-            var response = await _client.GetAsync("album/82006");
-            var result = await response.Content.ReadAsAsync<MusicAlbum>(); //RootObject
-            return result;
-       } */
-
-        public async Task<MusicAlbum> GetSearchAsync()
-        {
-            var response = await _client.GetAsync("Search");
-            var result = await response.Content.ReadAsAsync<MusicAlbum>(); //RootObject
+            var response = await _client.GetAsync($"album/{id}");
+            var result = await response.Content.ReadAsAsync<Album>(); //RootObject
             return result;
         }
+
+
+        public async Task<MusicSearch> GetSearchAsync(string album)
+        {
+            var response = await _client.GetAsync($"search?q={album}");
+
+            //var response = await _client.GetAsync($"album/{album}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
+
+            return result;
+        }       
+
+        
 
         //public static string CallMusicAPI()
         // {
