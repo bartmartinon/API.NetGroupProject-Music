@@ -33,38 +33,26 @@ namespace API.NetGroupProject_Music_.Models
         }
 
 
-        public async Task<MusicSearch> GetSearchAsync(string album)
+        public async Task<MusicSearch> GetMusicAsync(string artist)
         {
-            var response = await _client.GetAsync($"search?q={album}");
+            var response = await _client.GetAsync($"search?q={artist}");
 
             //var response = await _client.GetAsync($"album/{album}");
-            var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
-        }       
+        }
+        public async Task<MusicSearch> GetTrackAsync(string song)
+        {
+            var response = await _client.GetAsync($"search?q={song}");
 
-        
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
-        //public static string CallMusicAPI()
-        // {
+            return result;
+        }
 
-        //   string apiKey = Secret.OmbdKey;
-        // string endpoint;
-        //}
 
-        //public async Task<List<MusicAlbum>> GetAlbumsAsync()
-        //{
-        //  return await _client.GetFromJsonAsync<List<MusicAlbum>>("Albums");
-        //}
 
-        /*  public async Task<List<MusicAlbum>> GetAlbumsAsync()
-          {
-              var response = await _client.GetAsync("Albums");
-              var jsonresult = await response.Content.ReadAsStringAsync();
-
-              List<MusicAlbum> musicAlbums = JsonSerializer.Deserializer<List<MusicAlbum>>(JsonData);
-              return musicAlbums;
-          } */
 
     }
 }

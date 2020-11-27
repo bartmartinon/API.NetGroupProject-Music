@@ -20,15 +20,31 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MusicSearchAsync(string album)
+        public async Task<IActionResult> MusicSearchAsync(string artist)
         {
 
-            var result = await _dal.GetSearchAsync(album);
+            var result = await _dal.GetMusicAsync(artist);
+
+            return View(result); 
+        }
+        public async Task<IActionResult> AlbumSearchAsync(string album)
+        {
+
+            var result = await _dal.GetMusicAsync(album);
+            ViewBag.Album = album;
+
+            return View(result);
+        }
+        public async Task<IActionResult> TrackSearchAsync(string song)
+        {
+
+            var result = await _dal.GetMusicAsync(song);
+            ViewBag.Song = song;
 
             return View(result);
         }
 
-        public async Task<IActionResult> GetAlbum(int id)
+        public async Task<IActionResult> GetAlbumDetail(int id) //there is no view for this yet
         {
             var result = await _dal.GetAlbumAsync(id);
 
