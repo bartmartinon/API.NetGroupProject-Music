@@ -11,7 +11,7 @@ namespace API.NetGroupProject_Music_.Controllers
     public class MusicController : Controller
     {
         [HttpPost]
-        public async Task<IActionResult> MusicTESTSearchAsync(string data, string SearchBy)
+        public async Task<IActionResult> MusicSearchAsync(string data, string SearchBy)
         {
             if (SearchBy == "artist")
             {
