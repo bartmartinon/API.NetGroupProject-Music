@@ -39,10 +39,6 @@ namespace API.NetGroupProject_Music_.Models
             //var response = await _client.GetAsync($"album/{album}");
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
             return result;
         }
         public async Task<MusicSearch> GetTrackAsync(string song)
