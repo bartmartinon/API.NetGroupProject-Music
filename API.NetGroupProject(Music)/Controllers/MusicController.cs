@@ -51,5 +51,11 @@ namespace API.NetGroupProject_Music_.Controllers
             return View(result);
         }
 
+        public async Task<IActionResult> GetSearchAsync(string data)
+        {
+            var result = await _dal.GetSearchAsync(data);
+            return View(result);
+        }
+
     }
 }

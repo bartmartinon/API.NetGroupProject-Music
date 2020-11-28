@@ -13,7 +13,6 @@ namespace API.NetGroupProject_Music_.Models
     {
         search,
         album,
-        genre,
         artist,
         track
     }
@@ -49,6 +48,17 @@ namespace API.NetGroupProject_Music_.Models
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
+        }
+
+
+        public async Task<MusicSearch> GetSearchAsync(string data)
+        {
+            var response = await _client.GetAsync($"search?q={data}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
+
+            return result;
+
+
         }
 
 

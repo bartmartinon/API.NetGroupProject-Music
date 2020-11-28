@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace API.NetGroupProject_Music_.Models
 {
 
-    
+
     public class MusicSearch
     {
         public Datum[] data { get; set; }
@@ -15,7 +15,7 @@ namespace API.NetGroupProject_Music_.Models
         public string next { get; set; }
     }
 
-    public class Datum
+    public class Datum //track
     {
         public int id { get; set; }
         public bool readable { get; set; }
@@ -32,7 +32,7 @@ namespace API.NetGroupProject_Music_.Models
         public string md5_image { get; set; }
         public Artist artist { get; set; }
         public Album album { get; set; }
-        public string type { get; set; }
+        public string type { get; set; } //track
     }
 
     public class Artist
@@ -85,12 +85,13 @@ namespace API.NetGroupProject_Music_.Models
         public int bpm { get; set; }
         public float gain { get; set; }
         public string[] available_countries { get; set; }
-     
+
         public string md5_image { get; set; }
         public Artist artist { get; set; }
         public Album album { get; set; }
         public string type { get; set; }
     }
+
 
 
 }
