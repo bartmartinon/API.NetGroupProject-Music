@@ -61,6 +61,16 @@ namespace API.NetGroupProject_Music_.Models
 
         }
 
+        public async Task<MusicSearch> MusicTESTSearchAsync(string data)
+        {
+            var response = await _client.GetAsync($"search?q={data}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
+
+            return result;
+
+
+        }
+
 
 
 

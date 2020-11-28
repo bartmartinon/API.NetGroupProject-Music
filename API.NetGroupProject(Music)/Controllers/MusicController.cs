@@ -10,6 +10,33 @@ namespace API.NetGroupProject_Music_.Controllers
 {
     public class MusicController : Controller
     {
+        [HttpPost]
+        public async Task<IActionResult> MusicTESTSearchAsync(string data, string SearchBy)
+        {
+            if (SearchBy == "artist")
+            {
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("getsearch", result); //bart- put the name of the view for artist here
+            }
+            if (SearchBy == "album")
+            {
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("getsearch", result); //bart- put the name of the view for album here
+            }
+            if (SearchBy == "title")
+            {
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("getsearch", result); //bart- put the name of the view for song here
+            }
+            else
+                return View("index");
+        }
         private readonly MusicDAL _dal;
         private readonly MusicProjectDbContext _db = new MusicProjectDbContext();
         public MusicController(MusicDAL dal)
@@ -22,29 +49,7 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MusicSearchAsync(string artist)
-        {
-
-            var result = await _dal.GetMusicAsync(artist);
-
-            return View(result); 
-        }
-        public async Task<IActionResult> AlbumSearchAsync(string album)
-        {
-
-            var result = await _dal.GetMusicAsync(album);
-            ViewBag.Album = album;
-
-            return View(result);
-        }
-        public async Task<IActionResult> TrackSearchAsync(string song)
-        {
-
-            var result = await _dal.GetMusicAsync(song);
-            ViewBag.Song = song;
-
-            return View(result);
-        }
+        
 
         public IActionResult Favorites()
         {
@@ -59,7 +64,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
         [HttpPost]
-        public IActionResult RemoveFavorite (Favorites f)
+        public IActionResult RemoveFavorite(Favorites f)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +75,7 @@ namespace API.NetGroupProject_Music_.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFavorite (Favorites f)
+        public IActionResult AddFavorite(Favorites f)
         {
             if (ModelState.IsValid)
             {
@@ -79,33 +84,6 @@ namespace API.NetGroupProject_Music_.Controllers
             }
             return RedirectToAction("Music/Favorites");
         }
-
-        public IActionResult MusicSearch()
-        public async Task<IActionResult> GetAlbumDetail(int id) //there is no view for this yet
-        {
-
-            var result = await _dal.GetAlbumAsync(id);
-
-            return View(result);
-        }
-
-        public async Task<IActionResult> GetSearchAsync(string data)
-        {
-            var result = await _dal.GetSearchAsync(data);
-            return View(result);
-
-
-
-        }
-
-        public async Task<IActionResult> MusicSearchResultsAsync(string data)
-        {
-            var result = await _dal.GetSearchAsync(data);
-            return View(result);
-
-
-
-        }
-
     }
+
 }

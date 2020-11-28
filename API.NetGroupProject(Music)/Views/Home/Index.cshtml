@@ -1,49 +1,18 @@
 ﻿
-<h1>Search</h1>
-<form asp-action="MusicSearch" asp-controller="Music" method="post">
 
-
-    <p>Artist</p>
-    <input name="artist" type="text"/>
-
-
-    <p>Album</p>
-    <input name="album" type="text"/>
-
-
-
-
-    <input type="submit"/>
-</form>
-
-<form asp-action="AlbumSearch" asp-controller="Music" method="post">
-
-    <p>Album</p> 
-    <input name="album" type="text" />
-
+<form asp-controller="Music" asp-action="MusicTESTSearch" method="post">
+    <input type="text" name="data"/><br>
+<input type="radio" id="SearchBy" name="SearchBy" value="artist">
+<label for="artist">Artist</label>
+<br>
+<input type="radio" id="SearchBy" name="SearchBy" value="album">
+<label for="album">Album</label>
+<br>
+<input type="radio" id="SearchBy" name="SearchBy" value="song">
+<label for="song">Song</label>
     <input type="submit" />
 </form>
 
-<form asp-action="TrackSearch" asp-controller="Music" method="post">
 
-    <p>Song</p>
-    <input name="song" type="text" />
+    <button>Add <span style="font-size:100%;color:red;">&#10084;</span> to favorites!</button>
 
-    <input type="submit" />
-</form>
-
-<form asp-action="GetSearch" asp-controller="Music" method="post">
-
-    <p>Search</p>
-    <input name="data" type="text" />
-
-    <input type="submit" />
-</form>
-
-<form asp-action="MusicSearchResults" asp-controller="Music" method="post">
-
-    <p>Search</p>
-    <input name="data" type="text" />
-
-    <input type="submit" />
-</form>
