@@ -40,8 +40,11 @@ namespace API.NetGroupProject_Music_.Models
             //var response = await _client.GetAsync($"album/{album}");
             var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
 
+
             return result;
         }       
+
+        
 
         
 
