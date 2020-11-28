@@ -46,9 +46,11 @@ namespace API.NetGroupProject_Music_.Controllers
 
         public async Task<IActionResult> GetAlbumDetail(int id) //there is no view for this yet
         {
+
             var result = await _dal.GetAlbumAsync(id);
 
             return View(result);
+
         }
 
     }
