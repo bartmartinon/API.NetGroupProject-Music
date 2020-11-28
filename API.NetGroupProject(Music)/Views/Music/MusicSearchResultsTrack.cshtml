@@ -1,0 +1,54 @@
+﻿@model Datum
+
+<h4>Results for Track ID: @Model.id</h4>
+<p><b>Title:</b> @Model.title</p>
+<p><b>Readable: </b> @Model.readable</p>
+<p><b>Link:</b> <a href=@Model.link>@Model.link</a></p>
+<p><b>Duration: </b> @Model.duration</p>
+<p><b>Rank: </b> @Model.rank</p>
+<p><b>Explcit: </b> @Model.explicit_lyrics</p>
+<p style="margin-left:2em"><b>Lyrics?: </b> @Model.explicit_content_lyrics</p>
+<p style="margin-left:2em"><b>Cover?: </b> @Model.explicit_content_cover</p>
+<p><b>Preview: </b> @Model.preview</p>
+<img src="@Model.md5_image" alt="md5_image" />
+<p><b>Type:</b> @Model.type</p>
+<p><b>Artist:</b> <a href=@Model.artist>@Model.artist.name</a></p>
+<p><b>Album:</b> <a href=@Model.album>@Model.album.title</a></p>
+
+
+@*MusicTrack isn't used in MusicSearch
+    Looks like MusicTracks can be used if we make use of Album in another layer like so:
+        https://api.deezer.com/album/119606/track
+    This should take us to a list of MusicTracks that belong to that album
+    However, this would mean that we might need to use MusicTrack as the model... which
+        could mean another separate page since multiple Models is not a thing
+
+    In addition, there's a standalone search feature for tracks so: https://deezerdevs-deezer.p.rapidapi.com/track/null (null is replaced with the track's id)
+*@
+
+@*@model MusicTrack
+
+    <h4>Results for Track ID: @Model.id</h4>
+    <p><b>Title:</b> @Model.title</p>
+    <p><b>Readable: </b> @Model.readable</p>
+    <p><b>ISRC:</b> <a href=@Model.isrc>@Model.isrc</a></p>
+    <p><b>Link:</b> <a href=@Model.link>@Model.link</a></p>
+    <p><b>Share:</b> <a href=@Model.share>@Model.share</a></p>
+    <p><b>Duration: </b> @Model.duration</p>
+    <p><b>Track #: </b> @Model.track_position</p>
+    <p><b>Disc #: </b> @Model.disk_number</p>
+    <p><b>Rank: </b> @Model.rank</p>
+    <p><b>Release Date: </b> @Model.release_date</p>
+    <p><b>Explcit: </b> @Model.explicit_lyrics</p>
+    <p style="margin-left:2em"><b>Lyrics?: </b> @Model.explicit_content_lyrics</p>
+    <p style="margin-left:2em"><b>Cover?: </b> @Model.explicit_content_cover</p>
+    <p><b>Preview: </b> @Model.preview</p>
+    <p><b>BPM: </b> @Model.bpm</p>
+    <p><b>Gain: </b> @Model.gain</p>
+    <p><b>Available in the following countries:</b></p>
+    @foreach (string s in Model.available_countries)
+    {
+        <p style="margin-left:2em">@s</p>
+    }
+*@
+

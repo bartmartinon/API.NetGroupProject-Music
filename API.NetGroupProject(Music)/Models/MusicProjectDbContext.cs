@@ -133,6 +133,29 @@ namespace API.NetGroupProject_Music_.Models
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
+            modelBuilder.Entity<Favorites>(entity =>
+            {
+                entity.Property(e => e.Album).HasMaxLength(60);
+
+                entity.Property(e => e.Artist).HasMaxLength(50);
+
+                entity.Property(e => e.Track).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<UserFavorites>(entity =>
+            {
+                entity.Property(e => e.Album).HasMaxLength(60);
+
+                entity.Property(e => e.Artist).HasMaxLength(50);
+
+                entity.Property(e => e.Track).HasMaxLength(50);
+
+                entity.HasOne(d => d.IdNetUsersNavigation)
+                    .WithMany(p => p.InverseIdNetUsersNavigation)
+                    .HasForeignKey(d => d.IdNetUsers)
+                    .HasConstraintName("FK__UserFavor__IdNet__6383C8BA");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

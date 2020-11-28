@@ -1,4 +1,5 @@
-﻿@*UserFavorites.(something to display items only under the current user's id)*@
+﻿@*
+    UserFavorites.(something to display items only under the current user's id)
 
 @model UserFavorites
 <h2>Favorites</h2>
@@ -9,7 +10,6 @@
         <th>Album</th>
         <th>Genre</th>
     </tr>
-    @* Change models to store favorites in a list? (Id, Artist, Album, Genre) *@
     @foreach (UserFavorites f in Model)
     {
         <tr>
@@ -33,3 +33,5 @@
         </tr>
     }
 </table>
+    *@
+    @* Change models to store favorites in a list? (Id, Artist, Album, Genre) *@

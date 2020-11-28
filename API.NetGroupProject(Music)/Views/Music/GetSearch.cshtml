@@ -1,0 +1,15 @@
+﻿@model MusicSearch
+
+@foreach (Datum d in Model.data)
+{
+    <p>@d.artist.name</p>
+    <p>@d.title</p>
+    <p>@d.album.title</p>
+
+
+    <p>@d.type</p>
+    <p>@d.artist.type</p>
+
+    <hr>
+}
+
