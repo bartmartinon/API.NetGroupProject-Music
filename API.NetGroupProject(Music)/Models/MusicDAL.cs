@@ -24,42 +24,35 @@ namespace API.NetGroupProject_Music_.Models
         {
             _client = client;
         }
-       /* public async Task<List<MusicAlbum>> GetAlbumsAsync()
-        {
-            var response = await _client.GetAsync("Albums");
-            var result = await response.Content.ReadAsAsync<List<MusicAlbum>>(); //RootObject
-            return result;
-       } */
 
-        public async Task<MusicSearch> GetSearchAsync()
+        public async Task<Album> GetAlbumAsync(int id)
         {
-            var response = await _client.GetAsync("Search/2342");
-            var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
+            var response = await _client.GetAsync($"album/{id}");
+            var result = await response.Content.ReadAsAsync<Album>(); //RootObject
             return result;
         }
 
-        
 
-        //public static string CallMusicAPI()
-        // {
+        public async Task<MusicSearch> GetMusicAsync(string artist)
+        {
+            var response = await _client.GetAsync($"search?q={artist}");
 
-        //   string apiKey = Secret.OmbdKey;
-        // string endpoint;
-        //}
+            //var response = await _client.GetAsync($"album/{album}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
-        //public async Task<List<MusicAlbum>> GetAlbumsAsync()
-        //{
-        //  return await _client.GetFromJsonAsync<List<MusicAlbum>>("Albums");
-        //}
+            return result;
+        }
+        public async Task<MusicSearch> GetTrackAsync(string song)
+        {
+            var response = await _client.GetAsync($"search?q={song}");
 
-        /*  public async Task<List<MusicAlbum>> GetAlbumsAsync()
-          {
-              var response = await _client.GetAsync("Albums");
-              var jsonresult = await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
-              List<MusicAlbum> musicAlbums = JsonSerializer.Deserializer<List<MusicAlbum>>(JsonData);
-              return musicAlbums;
-          } */
+            return result;
+        }
+
+
+
 
     }
 }

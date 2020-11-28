@@ -1,0 +1,15 @@
+﻿@model MusicSearch
+
+
+@foreach (Datum d in Model.data)
+{
+    //add a filter here to only display info if ViewBag.Album = d.album.id
+
+    <h4>Results for Album ID: @d.album.id</h4> //this should be hidden, but can be used to get more info on an album
+    <p><b>Title:</b> @d.album.title</p>
+    <img src="@d.album.cover" alt="cover" />
+    <img src="@d.album.md5_image" alt="md5_image" /> //this does not work
+    <p><b>Track List:</b> <a href=@d.album.tracklist>@d.album.tracklist</a></p>
+    <p><b>Type:</b> @d.album.type</p>
+    <hr>
+}

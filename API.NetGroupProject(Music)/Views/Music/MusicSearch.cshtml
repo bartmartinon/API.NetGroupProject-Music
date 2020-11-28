@@ -1,9 +1,16 @@
-﻿@model API.NetGroupProject_Music_.Models.MusicSearch
-@*foreach(Datum d in Model)
-    {
-        <p>@d.artist</p>
-        <p>@d.album</p>
 
-    }*@
+@model MusicSearch
 
-@Html.DisplayFor(model => model.data)
+@foreach (Datum d in Model.data)
+{
+    <p>@d.artist.name</p>
+    <p>@d.title</p>
+    <p>@d.album.title <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">Get This Album Information (this link needs a view!)</a></p>
+    <hr>
+}
+
+
+
+
+
+}
