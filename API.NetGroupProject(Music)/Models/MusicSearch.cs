@@ -34,6 +34,5 @@ namespace API.NetGroupProject_Music_.Models
         public string type { get; set; }
     }
 
-    
-
+   
 }
