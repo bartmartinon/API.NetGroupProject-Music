@@ -35,6 +35,10 @@ namespace API.NetGroupProject_Music_.Models
         public string type { get; set; } //track
     }
 
+<<<<<<< HEAD
+   
+}
+=======
     public class Artist
     {
         public int id { get; set; }

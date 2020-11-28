@@ -1,0 +1,9 @@
+﻿@model Artist
+
+<h4>Results for Artist ID: @Model.id</h4>
+<p><b>Name:</b> @Model.name</p>
+<img src="@Model.picture" alt="picture" />
+<img src="@Model.md5_image" alt="md5_image" />
+<p><b>Track List:</b> <a href=@Model.tracklist>@Model.tracklist</a></p>
+<p><b>Type:</b> @Model.type</p>
+<p><b>Link:</b> <a href=@Model.link>@Model.link</a></p>
