@@ -1,7 +1,25 @@
 ﻿
 <h1>Search</h1>
 <form asp-action="MusicSearch" asp-controller="Music" method="post">
+
     <p>Artist</p>
     <input name="artist" type="text"/>
+
     <input type="submit"/>
+</form>
+
+<form asp-action="AlbumSearch" asp-controller="Music" method="post">
+
+    <p>Album</p> 
+    <input name="album" type="text" />
+
+    <input type="submit" />
+</form>
+
+<form asp-action="TrackSearch" asp-controller="Music" method="post">
+
+    <p>Song</p>
+    <input name="song" type="text" />
+
+    <input type="submit" />
 </form>

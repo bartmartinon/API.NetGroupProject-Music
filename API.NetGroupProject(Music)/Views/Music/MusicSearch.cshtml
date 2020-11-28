@@ -1,8 +1,19 @@
-﻿@model MusicSearch
 
+<<<<<<< HEAD
 @foreach(Datum d in Model.data)
-{
-    <p>@d.artist</p>
-    <p>@d.album</p>
+=======
+@model MusicSearch
 
+@foreach (Datum d in Model.data)
+>>>>>>> ac9c9049b7874fa288d02c8a8d31a16aa1c20327
+{
+    <p>@d.artist.name</p>
+    <p>@d.title</p>
+    <p>@d.album.title <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">Get This Album Information (this link needs a view!)</a></p>
+    <hr>
 }
+
+
+
+
+
