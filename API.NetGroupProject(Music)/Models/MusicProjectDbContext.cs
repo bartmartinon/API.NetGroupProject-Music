@@ -29,7 +29,7 @@ namespace API.NetGroupProject_Music_.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=MusicProjectDb;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\sqlExpress;Database=MusicProjectDb;Trusted_Connection=True;");
             }
         }
 

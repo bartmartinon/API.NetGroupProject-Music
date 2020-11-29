@@ -62,28 +62,76 @@ namespace API.NetGroupProject_Music_.Controllers
             return View(_db.UserFavorites.ToList());
         }
 
+<<<<<<< HEAD
 
         [HttpPost]
         public IActionResult RemoveFavorite(Favorites f)
+=======
+        public async Task<IActionResult> RemoveFavorite (int f)
+>>>>>>> d538289c111b31fd35dad7d25bc65b710bb38b8a
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Remove(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("/MusicFavorites");
+            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            _db.Favorites.Remove(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
         }
 
+<<<<<<< HEAD
         [HttpPost]
         public IActionResult AddFavorite(Favorites f)
+=======
+        public async Task<IActionResult> AddFavorite (int f)
+>>>>>>> d538289c111b31fd35dad7d25bc65b710bb38b8a
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Add(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("Music/Favorites");
+            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            _db.Favorites.Add(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
         }
+<<<<<<< HEAD
+=======
+
+        //[HttpPost]
+        //public IActionResult AddFavorite (Favorites f)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Favorites.Add(f);
+        //        _db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Music/Favorites");
+        //}
+
+        public IActionResult MusicSearch()
+        {
+            return View();
+        }
+        public async Task<IActionResult> GetAlbumDetail(int id) //there is no view for this yet
+        {
+
+            var result = await _dal.GetAlbumAsync(id);
+
+            return View(result);
+        }
+
+        public async Task<IActionResult> GetSearchAsync(string data)
+        {
+            var result = await _dal.GetSearchAsync(data);
+            return View(result);
+
+
+
+        }
+
+        public async Task<IActionResult> MusicSearchResultsAsync(string data)
+        {
+            var result = await _dal.GetSearchAsync(data);
+            return View(result);
+
+
+
+        }
+\
     }
 
 }
