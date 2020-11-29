@@ -18,21 +18,21 @@ namespace API.NetGroupProject_Music_.Controllers
 
                 var result = await _dal.GetMusicAsync(data);
 
-                return View("getsearch", result); //bart- put the name of the view for artist here
+                return View("MusicSearchResultsArtist", result);
             }
             if (SearchBy == "album")
             {
 
                 var result = await _dal.GetMusicAsync(data);
 
-                return View("getsearch", result); //bart- put the name of the view for album here
+                return View("MusicSearchResultsAlbum", result);
             }
-            if (SearchBy == "title")
+            if (SearchBy == "song")
             {
 
                 var result = await _dal.GetMusicAsync(data);
 
-                return View("getsearch", result); //bart- put the name of the view for song here
+                return View("MusicSearchResultsTrack", result);
             }
             else
                 return View("index");

@@ -1,12 +1,32 @@
-﻿@model Artist
+﻿@model MusicSearch
 
-<h4>Results for Artist ID: @Model.id</h4>
-<p><b>Name:</b> @Model.name</p>
-<img src="@Model.picture" alt="picture" />
-@*
-    
-<img src="@Model.md5_image" alt="md5_image" />
-*@
-<p><b>Track List:</b> <a href=@Model.tracklist>@Model.tracklist</a></p>
-<p><b>Type:</b> @Model.type</p>
-<p><b>Link:</b> <a href=@Model.link>@Model.link</a></p>
+@{
+    List<int> uniqueArtistIDs = new List<int>();
+}
+@foreach (Datum d in Model.data)
+{
+    if (!uniqueArtistIDs.Contains(d.artist.id))
+    {
+        <p><b>Artist ID: @d.artist.id</b></p>
+        <p><b>Name:</b> @d.artist.name</p>
+        <img src="@d.artist.picture" alt="@d.artist.picture" />
+        <p><b>Track List:</b> <a href=@d.artist.tracklist>@d.artist.tracklist</a></p>
+        <p><b>Link:</b> <a href=@d.artist.link>@d.artist.link</a></p>
+        <hr />
+        uniqueArtistIDs.Add(d.artist.id);
+    }
+
+}
+<p>Length of Datum data: @Model.data.Length </p>
+<p>Unique Artists in data: @uniqueArtistIDs.Count </p>
+<p>
+    @if (Model.prev != null)
+    {
+        <a href="@Model.prev">&larr; Prev</a>
+    }
+    @Model.total
+    @if (Model.next != null)
+    {
+        <a href="@Model.next">Next &rarr;</a>
+    }
+</p>
