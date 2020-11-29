@@ -57,30 +57,37 @@ namespace API.NetGroupProject_Music_.Controllers
             return View(_db.UserFavorites.ToList());
         }
 
-
-        [HttpPost]
-        public IActionResult RemoveFavorite (Favorites f)
+        public async Task<IActionResult> RemoveFavorite (int f)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Remove(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("/MusicFavorites");
+            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            _db.Favorites.Remove(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
         }
 
-        [HttpPost]
-        public IActionResult AddFavorite (Favorites f)
+        public async Task<IActionResult> AddFavorite (int f)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Add(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("Music/Favorites");
+            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            _db.Favorites.Add(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
         }
+
+        //[HttpPost]
+        //public IActionResult AddFavorite (Favorites f)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Favorites.Add(f);
+        //        _db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Music/Favorites");
+        //}
 
         public IActionResult MusicSearch()
+        {
+            return View();
+        }
         public async Task<IActionResult> GetAlbumDetail(int id) //there is no view for this yet
         {
 

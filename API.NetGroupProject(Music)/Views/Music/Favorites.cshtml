@@ -1,14 +1,13 @@
 ﻿@model List<Favorites>
-﻿@*
+﻿
     
-@model Favorites
     <h2>Favorites</h2>
 <table>
     <tr>
         <th>ID</th>
         <th>Artist</th>
         <th>Album</th>
-        <th>Genre</th>
+        <th>Track</th>
     </tr>
     @foreach(Favorites f in Model)
     {
@@ -23,14 +22,17 @@
                 <p>@f.Album</p>
             </td>
             <td>
-                <p>@f.Genre</p>
+                <p>@f.Track</p>
             </td>
             <td>
-                <form asp-action="RemoveFavorite">
+                <form asp-controller="Music" asp-action="RemoveFavorite">
                     <input type="submit" value="Remove" />
                 </form>
             </td>
         </tr>
     }
 </table>
-*@
+
+<form asp-controller="Music" asp-action="AddFavorite">
+    <input type="submit" value="Add" />
+</form>
