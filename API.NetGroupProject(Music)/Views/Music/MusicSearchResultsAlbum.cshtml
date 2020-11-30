@@ -56,8 +56,10 @@
         <a href="@Model.next">Next &rarr;</a>
     }
 </p>
-=======
+@*
+    
         <p><b>Track List:</b> <a asp-controller="Music" asp-action="MusicSearch" asp-route-id="@d.album.id">@d.album.tracklist</a></p>
+*@
         <hr />
         uniqueAlbumIDs.Add(d.album.id);
     }

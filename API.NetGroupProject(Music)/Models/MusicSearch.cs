@@ -19,23 +19,7 @@ namespace API.NetGroupProject_Music_.Models
         public List<Datum> Datums{get;set;}
     }
 
-    //public void SaveTracks(List<Datum> tracks)
-    //{
-    //    if (tracks !=null)
-    //    {
-    //        using (var context = new ApplicationDbContext())
-    //        {
-    //            foreach (var track in tracks)
-    //            {
-    //                var record = context.Model.Find(track.id);
-    //                if (record !=null)
-    //                {
 
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
     public class Datum //track
     {
         public int id { get; set; }
@@ -83,19 +67,12 @@ namespace API.NetGroupProject_Music_.Models
         public string tracklist { get; set; }
         public string type { get; set; }
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 67510a4cd79e8366ea66374ee6628d7e7c0e2363
     public class Tracks
     {
         public MusicTrack[] data { get; set; }
     }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 67510a4cd79e8366ea66374ee6628d7e7c0e2363
     public class MusicTrack
     {
         
@@ -131,25 +108,6 @@ namespace API.NetGroupProject_Music_.Models
         //public Tracks tracks { get; set; }
         
     }
-    public class Genres
-    {
-        public Datum[] data { get; set; }
-    }
-    public class Contributor
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string link { get; set; }
-        public string share { get; set; }
-        public string picture { get; set; }
-        public string picture_small { get; set; }
-        public string picture_medium { get; set; }
-        public string picture_big { get; set; }
-        public string picture_xl { get; set; }
-        public bool radio { get; set; }
-        public string tracklist { get; set; }
-        public string type { get; set; }
-        public string role { get; set; }
-    }
+    
 
 }
