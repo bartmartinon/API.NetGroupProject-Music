@@ -11,12 +11,6 @@ namespace API.NetGroupProject_Music_.Controllers
 {
     public class HomeController : Controller
     {
-       
-
-
-
-
-
         public IActionResult Index()
         {
             return View();

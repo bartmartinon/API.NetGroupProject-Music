@@ -68,32 +68,23 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> RemoveFavorite (int f)
+        public async Task<IActionResult> RemoveFavorite (int id)
         {
-            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            var favoriteItem = await _db.Favorites.FindAsync(id + 1);
             _db.Favorites.Remove(favoriteItem);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Favorites));
         }
 
         [HttpPost]
-        public IActionResult AddFavorite (string album, string artist, int artistid, int albumid)
+        public IActionResult AddFavorite (string album, string artist, int artistid, int albumid, int trackid)
         {
-            Favorites adding = new Favorites(album, artist, artistid, albumid);
+            Favorites adding = new Favorites(album, artist, artistid, albumid, trackid);
             _db.Favorites.Add(adding);
             _db.SaveChanges();
             return RedirectToAction(nameof(Favorites));
         }
 
-        public IActionResult AddFavorite(Favorites f)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Add(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("Music/Favorites");
-        }
         [HttpPost]
         public async Task<IActionResult> AlbumSearchAsync(int albumId)
         {
