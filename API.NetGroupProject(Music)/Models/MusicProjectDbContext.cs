@@ -141,8 +141,11 @@ namespace API.NetGroupProject_Music_.Models
 
                 entity.Property(e => e.Artist).HasMaxLength(50);
 
-                entity.Property(e => e.ArtistId).HasMaxLength(50);
                 entity.Property(e => e.AlbumId).HasMaxLength(50);
+
+                entity.Property(e => e.ArtistId).HasMaxLength(50);
+
+                entity.Property(e => e.TrackId).HasMaxLength(50);
             });
 
             modelBuilder.Entity<UserFavorites>(entity =>
