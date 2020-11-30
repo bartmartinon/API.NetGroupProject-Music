@@ -94,6 +94,12 @@ namespace API.NetGroupProject_Music_.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Favorites));
         }
+<<<<<<< HEAD
+        [HttpPost]
+        public async Task<IActionResult> AlbumSearchAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+=======
 
 
         //[HttpPost]
@@ -151,10 +157,9 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
         }
-        [HttpPost]
-        public async Task<IActionResult> AlbumSearchAsync(int albumId)
-        {
-            var result = await _dal.GetAlbumAsync(albumId);
+
+    }
+>>>>>>>>> Temporary merge branch 2
 
             return View("TracklistDetails", result);
         }

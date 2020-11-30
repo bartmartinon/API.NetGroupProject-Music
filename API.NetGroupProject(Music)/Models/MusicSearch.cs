@@ -83,10 +83,19 @@ namespace API.NetGroupProject_Music_.Models
         public string tracklist { get; set; }
         public string type { get; set; }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67510a4cd79e8366ea66374ee6628d7e7c0e2363
     public class Tracks
     {
         public MusicTrack[] data { get; set; }
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 67510a4cd79e8366ea66374ee6628d7e7c0e2363
     public class MusicTrack
     {
         
