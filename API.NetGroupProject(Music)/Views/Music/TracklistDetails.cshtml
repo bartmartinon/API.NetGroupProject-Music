@@ -1,0 +1,12 @@
+﻿@model AlbumSearch
+
+@foreach (Datum1 d in Model.tracks.data)
+{
+    <p><b>Title:</b> @d.title</p>
+    <p>Length: @d.duration</p>
+    <audio controls>
+        <source src="@d.preview" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <hr>
+}

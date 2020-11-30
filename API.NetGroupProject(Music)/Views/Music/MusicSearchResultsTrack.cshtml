@@ -2,19 +2,16 @@
 
 @foreach (Datum d in Model.data)
 {
-    <p><b>Track ID: </b> @d.id</p>
-    <p><b>Title:</b> @d.title</p>
-    <p><b>Readable: </b> @d.readable</p>
-    <p><b>Link:</b> <a href=@d.link>@d.link</a></p>
-    <p><b>Duration: </b> @d.duration</p>
-    <p><b>Rank: </b> @d.rank</p>
-    <p><b>Explcit: </b> @d.explicit_lyrics</p>
-    <p style="margin-left:2em"><b>Lyrics?: </b> @d.explicit_content_lyrics</p>
-    <p style="margin-left:2em"><b>Cover?: </b> @d.explicit_content_cover</p>
-    <p><b>Preview: </b> @d.preview</p>
-    <p><b>Artist:</b> <a href=@d.artist>@d.artist.name</a></p>
-    <p><b>Album:</b> <a href=@d.album>@d.album.title</a></p>
-    <hr />
+    if (ViewBag.Track == d.title.ToLower())
+    {
+        <p><b>Title:</b> @d.title</p>
+        <p><b>Duration: </b> @d.duration</p>
+        <p><b>Rank: </b> @d.rank</p>
+        <p><b>Explicit? </b> @d.explicit_lyrics</p>
+        <p><b>Artist:</b> @d.artist.name </p><form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
+        <p><b>Album:</b> @d.album.title </p><form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>Search Album</button></form>
+        <hr />
+    }
 }
 <p>Length of data: @Model.data.Length </p>
 <p>
@@ -28,3 +25,4 @@
         <a href="@Model.next">Next &rarr;</a>
     }
 </p>
+
