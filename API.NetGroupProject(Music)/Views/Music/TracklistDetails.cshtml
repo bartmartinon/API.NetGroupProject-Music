@@ -31,13 +31,13 @@
     <p>Album: @album </p>
 
     @*<button>Add <span style="font-size:100%;color:red;">&#10084;</span> to favorites!</button>*@
-    <form asp-controller="Music" asp-action="AddFavorite" method="post">
-            <input type="hidden" name="album" value="@d.title"/>
-            <input type="hidden" name="artist" value="@d.artist.name"/>
-            <input type="hidden" name="albumid" value="@d.id"/>
-            <input type="hidden" name="artistid" value="@d.artist.id"/>
-            <input type="submit" name="Datum" value="Add to Favorites"/>
-        </form>
+<form asp-controller="Music" asp-action="AddFavorite" method="post">
+    <input type="hidden" name="album" value="@d.title" />
+    <input type="hidden" name="artist" value="@d.artist.name" />
+    <input type="hidden" name="albumid" value="@Model.title" />
+    
+    <input type="submit" name="Datum" value="Add to Favorites" />
+</form>
 
     <hr>
 }

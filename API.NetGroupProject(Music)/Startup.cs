@@ -38,7 +38,7 @@ namespace API.NetGroupProject_Music_
 
             services.AddDbContext<MusicProjectDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("DAL")));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

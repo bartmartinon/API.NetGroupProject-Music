@@ -131,7 +131,7 @@ namespace API.NetGroupProject_Music_.Controllers
             return View("GetSearch");
         }
         [HttpPost]
-        public IActionResult AddFavorite (string album, string artist, int artistid, int albumid, int trackid)
+        public IActionResult AddFavorite (string album, string artist, string artistid, string albumid, string trackid)
         {
             Favorites adding = new Favorites(album, artist, artistid, albumid, trackid);
             _db.Favorites.Add(adding);

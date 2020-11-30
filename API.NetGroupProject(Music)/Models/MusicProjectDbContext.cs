@@ -24,7 +24,7 @@ namespace API.NetGroupProject_Music_.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Favorites> Favorites { get; set; }
         public virtual DbSet<UserFavorites> UserFavorites { get; set; }
-
+       
         public virtual DbSet <MusicTrack> MusicTracks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
