@@ -1,8 +1,11 @@
-﻿@model MusicSearch
+﻿@model AlbumSearch
+@{
 
-@foreach (Datum d in Model.data)
+    string album = Model.title;
+}
+
+@foreach (Datum1 d in Model.tracks.data)
 {
-
     <p><b>Title:</b> @d.title</p>
     {
         int minutes = d.duration / 60;
@@ -18,24 +21,11 @@
         }
         <p><b>Length:</b> @length</p>
     }
-    
-    <p><b>Artist:</b> @d.artist.name </p>
+    <audio controls>
+        <source src="@d.preview" type="audio/mpeg">
+    </audio>
+    <p>Artist: @d.artist.name</p>
     <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
-    <p><b>Album:</b> @d.album.title </p>
-    <form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>Search Album</button></form>
-    <hr />
-
+    <p>Album: @album </p>
+    <hr>
 }
-<p>Length of data: @Model.data.Length </p>
-<p>
-    @if (Model.prev != null)
-    {
-        <a href="@Model.prev">&larr; Prev</a>
-    }
-    @Model.total
-    @if (Model.next != null)
-    {
-        <a href="@Model.next">Next &rarr;</a>
-    }
-</p>
-

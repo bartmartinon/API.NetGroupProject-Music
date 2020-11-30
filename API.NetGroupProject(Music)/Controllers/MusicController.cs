@@ -24,6 +24,7 @@ namespace API.NetGroupProject_Music_.Controllers
         {
             if (SearchBy == "artist")
             {
+                ViewBag.Artist = data.ToLower();
 
                 var result = await _dal.GetMusicAsync(data);
 
@@ -31,6 +32,7 @@ namespace API.NetGroupProject_Music_.Controllers
             }
             if (SearchBy == "album")
             {
+                ViewBag.Album = data.ToLower();
 
                 var result = await _dal.GetMusicAsync(data);
 
@@ -38,6 +40,7 @@ namespace API.NetGroupProject_Music_.Controllers
             }
             if (SearchBy == "song")
             {
+                ViewBag.Track = data.ToLower();
 
                 var result = await _dal.GetMusicAsync(data);
 
@@ -53,7 +56,7 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-        
+
 
         public IActionResult Favorites()
         {
@@ -148,7 +151,13 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
         }
+        [HttpPost]
+        public async Task<IActionResult> AlbumSearchAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+
+            return View("TracklistDetails", result);
+        }
 
     }
-
 }
