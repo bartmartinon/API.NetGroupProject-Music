@@ -95,12 +95,13 @@ namespace API.NetGroupProject_Music_.Controllers
             return RedirectToAction(nameof(Favorites));
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AlbumSearchAsync(int albumId)
-        //{
-        //    var result = await _dal.GetAlbumAsync(albumId);
+        [HttpPost]
+        public async Task<IActionResult> AlbumSearchAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+            return View("TracklistDetails", result);
 
-        //}
+        }
 
         //[HttpPost]
         //public IActionResult AddFavorite (Favorites f)
