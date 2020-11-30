@@ -1,17 +1,50 @@
-
-
 @model MusicSearch
 
-@foreach (Datum d in Model.data)
 
-{
-    <p>@d.artist.name</p>
-    <p>@d.title</p>
-    <p>@d.album.title <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">Get This Album Information (this link needs a view!)</a></p>
-    <hr>
+    @foreach (Datum d in Model.data)
+    {
+        <form action="MusicSearch" method="post">
+
+        <p>@Html.DisplayFor(modelItem => d.album)</p>
+        <p>@Html.DisplayFor(modelItem => d.artist)</p>
+        <p>@Html.DisplayFor(modelItem => d.duration)</p>
+        <p>@Html.DisplayFor(modelItem => d.title)</p>
+        </form>
+        
     }
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    @model List<MusicTrack>
+
+    @foreach(MusicTrack musicTrack in Model)
+    {
+    <p>@Html.DisplayFor(modelItem => musicTrack.title)</p>
+    <p>@Html.DisplayFor(modelItem => musicTrack.album)</p>
+    <p>@Html.DisplayFor(modelItem => musicTrack.artist)</p>
+    <p>@Html.DisplayFor(modelItem => musicTrack.duration)</p>
+    <p>@Html.DisplayFor(modelItem => musicTrack.md5_image)</p>
+    }
+
+
+
+
+
+    <p>@d.album.title <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">
+
+*@
