@@ -47,6 +47,8 @@ namespace API.NetGroupProject_Music_.Models
 
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
+
             return result;
         }
 
@@ -57,6 +59,8 @@ namespace API.NetGroupProject_Music_.Models
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
+
+
         }
 
         public async Task<MusicSearch> MusicTESTSearchAsync(string data)

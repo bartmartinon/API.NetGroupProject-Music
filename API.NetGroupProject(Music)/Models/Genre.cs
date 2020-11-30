@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.NetGroupProject_Music_.Models
 {
-    public partial class Favorites
+    public class Genre
     {
-        public int Id { get; set; }
+
+
+        
+
     }
 }
