@@ -24,8 +24,6 @@
     <audio controls>
         <source src="@d.preview" type="audio/mpeg">
     </audio>
-    <p>Artist: @d.artist.name</p>
-    <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
-    <p>Album: @album </p>
+    <p>Artist: <a asp-area="" asp-controller="Music" asp-action="MusicSearchLink" asp-route-data="@d.artist.name" asp-route-SearchBy="artist">@d.artist.name</a></p>
     <hr>
 }

@@ -27,7 +27,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
                 var result = await _dal.GetMusicAsync(data);
 
-                return View("MusicSearchResultsAlbum", result);
+                return View("showalbums", result);
             }
             if (SearchBy == "song")
             {
@@ -94,6 +94,40 @@ namespace API.NetGroupProject_Music_.Controllers
 
             return View("TracklistDetails", result);
         }
+        public async Task<IActionResult> MusicSearchLinkAsync(string data, string SearchBy)
+        {
+            if (SearchBy == "artist")
+            {
+                ViewBag.Artist = data.ToLower();
 
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsArtist", result);
+            }
+            if (SearchBy == "album")
+            {
+                ViewBag.Album = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsAlbum", result);
+            }
+            if (SearchBy == "song")
+            {
+                ViewBag.Track = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsTrack", result);
+            }
+            else
+                return View("index");
+        }
+        public async Task<IActionResult> AlbumSearchLinkAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+
+            return View("TracklistDetails", result);
+        }
     }
 }

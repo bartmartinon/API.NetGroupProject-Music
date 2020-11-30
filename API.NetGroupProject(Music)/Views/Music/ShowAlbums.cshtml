@@ -6,12 +6,11 @@
 }
 @foreach (Datum d in Model.data)
 {
-    if (ViewBag.Album == d.album.title.ToLower() || !uniqueAlbumIDs.Contains(d.album.id))
+    if (ViewBag.Album == d.album.title.ToLower() && !uniqueAlbumIDs.Contains(d.album.id))
     {
         <p><b>Title:</b> @d.album.title</p>
         <img src="@d.album.cover" alt="@d.album.cover" />
         <a asp-area="" asp-controller="Music" asp-action="AlbumSearchLink" asp-route-albumId="@d.album.id">View TrackList</a>
-      
         <hr />
         uniqueAlbumIDs.Add(d.album.id);
 
