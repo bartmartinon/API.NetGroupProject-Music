@@ -75,7 +75,7 @@ namespace API.NetGroupProject_Music_.Controllers
         [HttpPost]
 
 
-        public async Task<IActionResult> RemoveFavorite(int f)
+        public async Task<IActionResult> RemoveFavorite(int id)
 
         {
             var favoriteItem = await _db.Favorites.FindAsync(id + 1);
