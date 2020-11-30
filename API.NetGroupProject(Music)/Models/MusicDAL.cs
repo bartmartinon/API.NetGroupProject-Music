@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ThirdParty.Json.LitJson;
+//using Newtonsoft.Json;
 
 namespace API.NetGroupProject_Music_.Models
 {
@@ -46,6 +47,8 @@ namespace API.NetGroupProject_Music_.Models
 
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
+           
+
             return result;
         }
 
@@ -66,10 +69,37 @@ namespace API.NetGroupProject_Music_.Models
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
+        }
 
+        public async Task<Datum> MusicSearch(int id)
+        {
+            var response = await _client.GetAsync($"album/{id}/tracks");
+            var result = await response.Content.ReadAsAsync<Datum>();
+            return result;
 
         }
 
+        //public async Task<List<MusicTrack>> GetTrackListAsync(int id)
+        //{
+        //    var response = await _client.GetAsync($"album/{id}/tracks");
+        //    var jsonData = await response.Content.ReadAsStringAsync();
+
+        //    List<MusicTrack> musicTracks = JsonSerializer.Deserialize<List<MusicTrack>>(jsonData);
+
+        //    return musicTracks;
+
+        //}
+
+        public async Task<MusicSearch> GetTrackListAsync(int id )
+        {
+            var response = await _client.GetAsync($"album/{id}/tracks");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsAsync<MusicSearch>();
+                return result;
+            }
+            return new MusicSearch();
+        }
 
 
 

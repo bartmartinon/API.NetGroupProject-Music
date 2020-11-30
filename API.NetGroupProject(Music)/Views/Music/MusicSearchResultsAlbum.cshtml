@@ -13,7 +13,58 @@
         <hr />
         uniqueAlbumIDs.Add(d.album.id);
     }
+  @*  <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">*@
+        }
+        <p>Length of Datum data: @Model.data.Length </p>
+        <p>Unique Albums in data: @uniqueAlbumIDs.Count </p>
+        <p>
+            @if (Model.prev != null)
+            {
+                <a href="@Model.prev">&larr; Prev</a>
+            }
+            |
+            @if (Model.next != null)
+            {
+                <a href="@Model.next">Next &rarr;</a>
+            }
+        </p>
 }
+@*<p>Length of Datum data: @Model.data.Length </p>
+<p>Unique Albums in data: @uniqueAlbumIDs.Count </p>
+<p>
+    @if (Model.prev != null)
+    {
+        <a href="@Model.prev">&larr; Prev</a>
+    }
+    |
+    @if (Model.next != null)
+    {
+        <a href="@Model.next">Next &rarr;</a>
+    }
+</p>*@
+}
+<p>Length of Datum data: @Model.data.Length </p>
+<p>Unique Albums in data: @uniqueAlbumIDs.Count </p>
+<p>
+    @if (Model.prev != null)
+    {
+        <a href="@Model.prev">&larr; Prev</a>
+    }
+    |
+    @if (Model.next != null)
+    {
+        <a href="@Model.next">Next &rarr;</a>
+}
+</p>
+@*
+    
+        <p><b>Track List:</b> <a asp-controller="Music" asp-action="MusicSearch" asp-route-id="@d.album.id">@d.album.tracklist</a></p>
+*@
+        <hr />
+        uniqueAlbumIDs.Add(d.album.id);
+    }
+  @*  <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">*@
+        }
 <p>Length of Datum data: @Model.data.Length </p>
 <p>Unique Albums in data: @uniqueAlbumIDs.Count </p>
 <p>
@@ -27,3 +78,4 @@
         <a href="@Model.next">Next &rarr;</a>
     }
 </p>
+>>>>>>> 67510a4cd79e8366ea66374ee6628d7e7c0e2363

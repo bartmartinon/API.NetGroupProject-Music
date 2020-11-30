@@ -1,7 +1,8 @@
-﻿@model List<Favorites>
-﻿@*
+﻿
+
     
-@model Favorites
+    
+@model List<Favorites>
     <h2>Favorites</h2>
 <table>
     <tr>
@@ -23,7 +24,7 @@
                 <p>@f.Album</p>
             </td>
             <td>
-                <p>@f.Genre</p>
+                <p>@f.AlbumId</p>
             </td>
             <td>
                 <form asp-controller="Music" asp-action="RemoveFavorite">
@@ -33,4 +34,5 @@
         </tr>
     }
 </table>
-*@
+
+﻿

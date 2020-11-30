@@ -1,5 +1,5 @@
 ﻿@*
-    UserFavorites.(something to display items only under the current user's id)
+    
 
 @model UserFavorites
 <h2>Favorites</h2>
@@ -23,7 +23,7 @@
                 <p>@f.Album</p>
             </td>
             <td>
-                <p>@f.Genre</p>
+                <p>@f.Track</p>
             </td>
             <td>
                 <form asp-action="RemoveFavorite">
@@ -33,5 +33,6 @@
         </tr>
     }
 </table>
-    *@
+    
+*@    UserFavorites.(something to display items only under the current user's id)
     @* Change models to store favorites in a list? (Id, Artist, Album, Genre) *@
