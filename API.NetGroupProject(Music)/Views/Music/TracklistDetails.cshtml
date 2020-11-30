@@ -1,31 +1,85 @@
 ﻿@model AlbumSearch
-@{
 
+<style>
+    table {
+        border-collapse: separate;
+        width: 100%;
+    }
+
+    td {
+        border-bottom: solid 1px #000;
+        border-top: solid 1px #000;
+        width: 25%;
+    }
+
+    tr td:first-child {
+        border-left: solid 1px #000;
+    }
+
+    tr td:last-child {
+        border-right: solid 1px #000;
+    }
+
+    tr:first-child td:first-child {
+
+        border-top-left-radius: 10px;
+    }
+
+    tr:first-child td:last-child {
+        border-top-right-radius: 10px;
+    }
+
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+</style>
+
+@{
     string album = Model.title;
 }
 
-@foreach (Datum1 d in Model.tracks.data)
-{
-    <p><b>Title:</b> @d.title</p>
+<table>
+    @foreach (Datum1 d in Model.tracks.data)
     {
-        int minutes = d.duration / 60;
-        int seconds = d.duration - (minutes * 60);
-        string length = "" + minutes + ":";
-        if (seconds < 10)
-        {
-            length = length + "0" + seconds;
-        }
-        else
-        {
-            length = length + seconds;
-        }
-        <p><b>Length:</b> @length</p>
+    <tr>
+        <td>
+            <p><b>Title:</b> @d.title</p>
+            @{
+                int minutes = d.duration / 60;
+                int seconds = d.duration - (minutes * 60);
+                string length = "" + minutes + ":";
+                if (seconds < 10)
+                {
+                    length = length + "0" + seconds;
+                }
+                else
+                {
+                    length = length + seconds;
+                }
+                <p><b>Length:</b> @length</p>
+            }
+        </td>
+        <td>
+            <p><b>Artist: </b> @d.artist.name</p>
+            <p><b>Album: </b> @album </p>
+        </td>
+        <td>
+            <audio controls>
+                <source src="@d.preview" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <a asp-controller="Music" asp-action="AddFavoriteLink" asp-route-album="@album" asp-route-artist="@d.artist.name" asp-route-artistid="@d.artist.id" asp-route-albumid="@Model.id" asp-route-trackid="@d.id">
+                <svg width="25" height="25">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Card_heart.svg" width="25" height="25" />
+                </svg>
+            </a>
+            <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
+        </td>
+    </tr>
     }
-    <audio controls>
-        <source src="@d.preview" type="audio/mpeg">
-    </audio>
-    <p>Artist: @d.artist.name</p>
-    <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
-    <p>Album: @album </p>
-    <hr>
-}
+</table>

@@ -41,18 +41,17 @@ namespace API.NetGroupProject_Music_.Controllers
                 return View("index");
         }
         private readonly MusicDAL _dal;
-        private readonly MusicProjectDbContext _db = new MusicProjectDbContext();
-        public MusicController(MusicDAL dal)
+        private readonly MusicProjectDbContext _db;
+        public MusicController(MusicDAL dal, MusicProjectDbContext db)
         {
             _dal = dal;
+            _db = db;
         }
         public async Task<IActionResult> Index()
         {
             //var result = await _dal.GetSearchAsync();
             return View();
         }
-
-
 
         public IActionResult Favorites()
         {
@@ -65,28 +64,32 @@ namespace API.NetGroupProject_Music_.Controllers
             return View(_db.UserFavorites.ToList());
         }
 
-
         [HttpPost]
-        public IActionResult RemoveFavorite(Favorites f)
+        public async Task<IActionResult> RemoveFavorite(int id)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Remove(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("/MusicFavorites");
+            var favoriteItem = await _db.Favorites.FindAsync(id + 1);
+            _db.Favorites.Remove(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
         }
 
         [HttpPost]
-        public IActionResult AddFavorite(Favorites f)
+        public IActionResult AddFavorite(string album, string artist, int artistid, int albumid, int trackid)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Favorites.Add(f);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("Music/Favorites");
+            Favorites adding = new Favorites(album, artist, artistid, albumid, trackid);
+            _db.Favorites.Add(adding);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Favorites));
         }
+
+        public IActionResult AddFavoriteLink(string album, string artist, int artistid, int albumid, int trackid)
+        {
+            Favorites adding = new Favorites(album, artist, artistid, albumid, trackid);
+            _db.Favorites.Add(adding);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Favorites));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AlbumSearchAsync(int albumId)
         {
