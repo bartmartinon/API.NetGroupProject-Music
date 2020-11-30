@@ -3,8 +3,10 @@
 @foreach (Datum1 d in Model.tracks.data)
 {
     <p><b>Title:</b> @d.title</p>
-    <p><b>Length:</b> @d.duration seconds</p>
-    <p><b>Explicit? </b> @d.explicit_lyrics</p>
-    @*Could consider having the preview in here*@
-    <hr />
+    <p>Length: @d.duration</p>
+    <audio controls>
+        <source src="@d.preview" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <hr>
 }
