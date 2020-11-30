@@ -1,4 +1,5 @@
 ﻿using API.NetGroupProject_Music_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,38 @@ namespace API.NetGroupProject_Music_.Controllers
 {
     public class MusicController : Controller
     {
+        [HttpPost]
+        public async Task<IActionResult> MusicSearchAsync(string data, string SearchBy)
+        {
+            if (SearchBy == "artist")
+            {
+                ViewBag.Artist = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsArtist", result);
+            }
+            if (SearchBy == "album")
+            {
+                ViewBag.Album = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("showalbums", result);
+            }
+            if (SearchBy == "song")
+            {
+                ViewBag.Track = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsTrack", result);
+            }
+            else
+                return View("index");
+        }
         private readonly MusicDAL _dal;
+        private readonly MusicProjectDbContext _db = new MusicProjectDbContext();
         public MusicController(MusicDAL dal)
         {
             _dal = dal;
@@ -20,22 +52,82 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MusicSearchAsync(string album)
+
+
+        public IActionResult Favorites()
         {
-
-            var result = await _dal.GetSearchAsync(album);
-
-            return View(result);
+            return View(_db.Favorites.ToList());
         }
 
-        public async Task<IActionResult> GetAlbum(int id)
+        [Authorize]
+        public IActionResult UserFavorites()
         {
-
-            var result = await _dal.GetAlbumAsync(id);
-
-            return View(result);
-
+            return View(_db.UserFavorites.ToList());
         }
 
+
+        [HttpPost]
+        public IActionResult RemoveFavorite(Favorites f)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Favorites.Remove(f);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("/MusicFavorites");
+        }
+
+        [HttpPost]
+        public IActionResult AddFavorite(Favorites f)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Favorites.Add(f);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Music/Favorites");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AlbumSearchAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+
+            return View("TracklistDetails", result);
+        }
+        public async Task<IActionResult> MusicSearchLinkAsync(string data, string SearchBy)
+        {
+            if (SearchBy == "artist")
+            {
+                ViewBag.Artist = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsArtist", result);
+            }
+            if (SearchBy == "album")
+            {
+                ViewBag.Album = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsAlbum", result);
+            }
+            if (SearchBy == "song")
+            {
+                ViewBag.Track = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsTrack", result);
+            }
+            else
+                return View("index");
+        }
+        public async Task<IActionResult> AlbumSearchLinkAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+
+            return View("TracklistDetails", result);
+        }
     }
 }

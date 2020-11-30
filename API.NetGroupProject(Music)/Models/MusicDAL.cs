@@ -13,7 +13,6 @@ namespace API.NetGroupProject_Music_.Models
     {
         search,
         album,
-        genre,
         artist,
         track
     }
@@ -25,49 +24,54 @@ namespace API.NetGroupProject_Music_.Models
             _client = client;
         }
 
-        public async Task<Album> GetAlbumAsync(int id)
+        public async Task<AlbumSearch> GetAlbumAsync(int id)
         {
             var response = await _client.GetAsync($"album/{id}");
-            var result = await response.Content.ReadAsAsync<Album>(); //RootObject
+            var result = await response.Content.ReadAsAsync<AlbumSearch>(); //RootObject
+            return result;
+        }
+
+        public async Task<MusicSearch> GetMusicAsync(string artist)
+        {
+            var response = await _client.GetAsync($"search?q={artist}");
+
+            //var response = await _client.GetAsync($"album/{album}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
+
+            return result;
+        }
+        public async Task<MusicSearch> GetTrackAsync(string song)
+        {
+            var response = await _client.GetAsync($"search?q={song}");
+
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
+
             return result;
         }
 
 
-        public async Task<MusicSearch> GetSearchAsync(string album)
+        public async Task<MusicSearch> GetSearchAsync(string data)
         {
-            var response = await _client.GetAsync($"search?q={album}");
-
-            //var response = await _client.GetAsync($"album/{album}");
-            var result = await response.Content.ReadAsAsync<MusicSearch>(); //RootObject
-
+            var response = await _client.GetAsync($"search?q={data}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
-        }       
 
-        
 
-        
+        }
 
-        //public static string CallMusicAPI()
-        // {
+        public async Task<MusicSearch> MusicTESTSearchAsync(string data)
+        {
+            var response = await _client.GetAsync($"search?q={data}");
+            var result = await response.Content.ReadAsAsync<MusicSearch>();
 
-        //   string apiKey = Secret.OmbdKey;
-        // string endpoint;
-        //}
+            return result;
 
-        //public async Task<List<MusicAlbum>> GetAlbumsAsync()
-        //{
-        //  return await _client.GetFromJsonAsync<List<MusicAlbum>>("Albums");
-        //}
 
-        /*  public async Task<List<MusicAlbum>> GetAlbumsAsync()
-          {
-              var response = await _client.GetAsync("Albums");
-              var jsonresult = await response.Content.ReadAsStringAsync();
+        }
 
-              List<MusicAlbum> musicAlbums = JsonSerializer.Deserializer<List<MusicAlbum>>(JsonData);
-              return musicAlbums;
-          } */
+
+
 
     }
 }

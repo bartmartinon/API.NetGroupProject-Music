@@ -1,0 +1,29 @@
+﻿@model AlbumSearch
+@{
+
+    string album = Model.title;
+}
+
+@foreach (Datum1 d in Model.tracks.data)
+{
+    <p><b>Title:</b> @d.title</p>
+    {
+        int minutes = d.duration / 60;
+        int seconds = d.duration - (minutes * 60);
+        string length = "" + minutes + ":";
+        if (seconds < 10)
+        {
+            length = length + "0" + seconds;
+        }
+        else
+        {
+            length = length + seconds;
+        }
+        <p><b>Length:</b> @length</p>
+    }
+    <audio controls>
+        <source src="@d.preview" type="audio/mpeg">
+    </audio>
+    <p>Artist: <a asp-area="" asp-controller="Music" asp-action="MusicSearchLink" asp-route-data="@d.artist.name" asp-route-SearchBy="artist">@d.artist.name</a></p>
+    <hr>
+}
