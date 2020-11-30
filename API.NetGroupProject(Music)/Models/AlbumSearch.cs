@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace API.NetGroupProject_Music_.Models
 {
 
-    public class Rootobject
+    public class AlbumSearch
     {
         public int id { get; set; }
         public string title { get; set; }

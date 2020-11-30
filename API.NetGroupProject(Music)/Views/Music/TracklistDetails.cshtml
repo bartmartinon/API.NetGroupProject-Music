@@ -1,9 +1,10 @@
-﻿@*@model Rootobject*@
+﻿@model AlbumSearch
 
 @foreach (Datum1 d in Model.tracks.data)
 {
-
     <p><b>Title:</b> @d.title</p>
-    <p>Length: @d.duration</p>
-    <hr>
+    <p><b>Length:</b> @d.duration seconds</p>
+    <p><b>Explicit? </b> @d.explicit_lyrics</p>
+    @*Could consider having the preview in here*@
+    <hr />
 }
