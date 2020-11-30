@@ -1,0 +1,36 @@
+﻿@model List<Favorites>
+﻿@*
+    
+@model Favorites
+    <h2>Favorites</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Genre</th>
+    </tr>
+    @foreach(Favorites f in Model)
+    {
+        <tr>
+            <td>
+                <p>@f.Id</p>
+            </td>
+            <td>
+                <p>@f.Artist</p>
+            </td>
+            <td>
+                <p>@f.Album</p>
+            </td>
+            <td>
+                <p>@f.Genre</p>
+            </td>
+            <td>
+                <form asp-controller="Music" asp-action="RemoveFavorite">
+                    <input type="submit" value="Remove" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+*@

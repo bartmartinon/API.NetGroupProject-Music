@@ -1,0 +1,28 @@
+﻿@model MusicSearch
+
+@foreach (Datum d in Model.data)
+{
+    if (ViewBag.Track == d.title.ToLower())
+    {
+        <p><b>Title:</b> @d.title</p>
+        <p><b>Duration: </b> @d.duration</p>
+        <p><b>Rank: </b> @d.rank</p>
+        <p><b>Explicit? </b> @d.explicit_lyrics</p>
+        <p><b>Artist:</b> @d.artist.name </p><form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
+        <p><b>Album:</b> @d.album.title </p><form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>Search Album</button></form>
+        <hr />
+    }
+}
+<p>Length of data: @Model.data.Length </p>
+<p>
+    @if (Model.prev != null)
+    {
+        <a href="@Model.prev">&larr; Prev</a>
+    }
+    @Model.total
+    @if (Model.next != null)
+    {
+        <a href="@Model.next">Next &rarr;</a>
+    }
+</p>
+

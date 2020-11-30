@@ -1,0 +1,30 @@
+﻿@model MusicSearch
+
+@{
+    List<int> uniqueArtistIDs = new List<int>();
+}
+@foreach (Datum d in Model.data)
+{
+    if (ViewBag.Artist == d.artist.name.ToLower() && !uniqueArtistIDs.Contains(d.artist.id))
+    {
+        <p><b>Name:</b> @d.artist.name</p>
+        <img src="@d.artist.picture" alt="@d.artist.picture" />
+        <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="album"><button>View Albums</button></form>
+        <hr />
+        uniqueArtistIDs.Add(d.artist.id);
+    }
+
+}
+<p>Length of Datum data: @Model.data.Length </p>
+<p>Unique Artists in data: @uniqueArtistIDs.Count </p>
+<p>
+    @if (Model.prev != null)
+    {
+        <a href="@Model.prev">&larr; Prev</a>
+    }
+    @Model.total
+    @if (Model.next != null)
+    {
+        <a href="@Model.next">Next &rarr;</a>
+    }
+</p>

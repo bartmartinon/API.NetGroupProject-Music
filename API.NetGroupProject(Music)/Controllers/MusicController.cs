@@ -1,4 +1,5 @@
 ﻿using API.NetGroupProject_Music_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,42 @@ namespace API.NetGroupProject_Music_.Controllers
 {
     public class MusicController : Controller
     {
+        [HttpPost]
+        public async Task<IActionResult> MusicSearchAsync(string data, string SearchBy)
+        {
+            if (SearchBy == "artist")
+            {
+                ViewBag.Artist = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsArtist", result);
+            }
+            if (SearchBy == "album")
+            {
+                ViewBag.Album = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsAlbum", result);
+            }
+            if (SearchBy == "song")
+            {
+                ViewBag.Track = data.ToLower();
+
+                var result = await _dal.GetMusicAsync(data);
+
+                return View("MusicSearchResultsTrack", result);
+            }
+            else
+                return View("index");
+        }
         private readonly MusicDAL _dal;
-        public MusicController(MusicDAL dal)
+        private readonly MusicProjectDbContext _db;
+        public MusicController(MusicDAL dal, MusicProjectDbContext db)
         {
             _dal = dal;
+            _db = db;
         }
         public async Task<IActionResult> Index()
         {
@@ -20,21 +53,53 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MusicSearchAsync(string album)
+
+
+        public IActionResult Favorites()
         {
-
-            var result = await _dal.GetSearchAsync(album);
-
-            return View(result);
+            return View(_db.Favorites.ToList());
         }
 
-        public async Task<IActionResult> GetAlbum(int id)
+        [Authorize]
+        public IActionResult UserFavorites()
         {
+            return View(_db.UserFavorites.ToList());
+        }
 
-            var result = await _dal.GetAlbumAsync(id);
 
-            return View(result);
+        [HttpPost]
+        public async Task<IActionResult> RemoveFavorite (int f)
+        {
+            var favoriteItem = await _db.Favorites.FindAsync(f + 1);
+            _db.Favorites.Remove(favoriteItem);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
+        }
 
+        [HttpPost]
+        public IActionResult AddFavorite (string album, string artist, int artistid, int albumid)
+        {
+            Favorites adding = new Favorites(album, artist, artistid, albumid);
+            _db.Favorites.Add(adding);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Favorites));
+        }
+
+        public IActionResult AddFavorite(Favorites f)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Favorites.Add(f);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Music/Favorites");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AlbumSearchAsync(int albumId)
+        {
+            var result = await _dal.GetAlbumAsync(albumId);
+
+            return View("TracklistDetails", result);
         }
 
     }
