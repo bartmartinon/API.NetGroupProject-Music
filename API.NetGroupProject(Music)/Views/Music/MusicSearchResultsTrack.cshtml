@@ -18,15 +18,15 @@
         }
         <p><b>Length:</b> @length</p>
     }
-    
-    <p><b>Artist:</b> @d.artist.name </p>
-    <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
-    <p><b>Album:</b> @d.album.title </p>
-    <form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>Search Album</button></form>
+    <audio controls>
+        <source src="@d.preview" type="audio/mpeg">
+    </audio>
+    <p><b>Artist: </b><a asp-area="" asp-controller="Music" asp-action="MusicSearchLink" asp-route-data="@d.artist.name" asp-route-SearchBy="artist">@d.artist.name</a> </p>
+    <p><b>Album: </b><a asp-area="" asp-controller="Music" asp-action="AlbumSearchLink" asp-route-albumId="@d.album.id">@d.album.title</a></p>
     <hr />
 
 }
-<p>Length of data: @Model.data.Length </p>
+@*<p>Length of data: @Model.data.Length </p>
 <p>
     @if (Model.prev != null)
     {
@@ -37,5 +37,5 @@
     {
         <a href="@Model.next">Next &rarr;</a>
     }
-</p>
+</p>*@
 
