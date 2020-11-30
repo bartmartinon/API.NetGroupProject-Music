@@ -15,6 +15,7 @@ namespace API.NetGroupProject_Music_.Controllers
         {
             if (SearchBy == "artist")
             {
+                ViewBag.Artist = data.ToLower();
 
                 var result = await _dal.GetMusicAsync(data);
 
@@ -30,6 +31,7 @@ namespace API.NetGroupProject_Music_.Controllers
             }
             if (SearchBy == "song")
             {
+                ViewBag.Track = data.ToLower();
 
                 var result = await _dal.GetMusicAsync(data);
 
@@ -90,7 +92,7 @@ namespace API.NetGroupProject_Music_.Controllers
         {
             var result = await _dal.GetAlbumAsync(albumId);
 
-            return View("tracklistDetails", result);
+            return View("TracklistDetails", result);
         }
 
     }

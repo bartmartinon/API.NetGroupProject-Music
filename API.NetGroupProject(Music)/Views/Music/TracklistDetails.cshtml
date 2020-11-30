@@ -1,8 +1,7 @@
-﻿@*@model Rootobject*@
+﻿@model AlbumSearch
 
 @foreach (Datum1 d in Model.tracks.data)
 {
-
     <p><b>Title:</b> @d.title</p>
     <p>Length: @d.duration</p>
     <audio controls>

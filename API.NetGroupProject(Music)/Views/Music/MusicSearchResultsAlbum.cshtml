@@ -5,15 +5,11 @@
 }
 @foreach (Datum d in Model.data)
 {
-    if (!uniqueAlbumIDs.Contains(d.album.id) && ViewBag.Album == d.album.title.ToLower())
+    if (ViewBag.Album == d.album.title.ToLower() || !uniqueAlbumIDs.Contains(d.album.id))
     {
-        <p><b>Album ID:</b> @d.album.id</p>
         <p><b>Title:</b> @d.album.title</p>
         <img src="@d.album.cover" alt="@d.album.cover" />
-        <form asp-action="albumsearch" asp-controller="music" method="post">
-            <input hidden type="number" name="albumID" value="@d.album.id" />
-            <input type="submit" value="see track list"/>
-        </form>
+        <form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>View TrackList</button></form>
         <hr />
         uniqueAlbumIDs.Add(d.album.id);
     }
