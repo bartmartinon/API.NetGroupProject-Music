@@ -1,11 +1,16 @@
 ﻿
+<div>
 
 <form asp-controller="Music" asp-action="MusicSearch" method="post">
-    <input type="text" name="data" required /><br>
+    <h2>Find your next jam:</h2>
+    <br>
+    <input type="text" name="data" required placeholder="artist, album, or song"/><br>
     <label for="artist">Artist </label><input type="radio" id="SearchBy" name="SearchBy" value="artist" checked><br>
     <label for="album">Album </label><input type="radio" id="SearchBy" name="SearchBy" value="album"><br>
     <label for="song">Song </label><input type="radio" id="SearchBy" name="SearchBy" value="song"><br>
+    <br>
     <input type="submit" value="Search!" />
 </form>
-
+</div>
+@*<button>Add <span style="font-size:100%;color:red;">&#10084;</span> to favorites!</button>*@
 

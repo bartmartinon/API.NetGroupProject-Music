@@ -9,7 +9,7 @@
     {
         <p><b>Name:</b> @d.artist.name</p>
         <img src="@d.artist.picture" alt="@d.artist.picture" />
-        <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="album"><button>View Albums</button></form>
+        <a asp-area="" asp-controller="Music" asp-action="MusicSearchLink" asp-route-data="@d.artist.name" asp-route-SearchBy="album">View Albums</a>
         <hr />
         uniqueArtistIDs.Add(d.artist.id);
     }

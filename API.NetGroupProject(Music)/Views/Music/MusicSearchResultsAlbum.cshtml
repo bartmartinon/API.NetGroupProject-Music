@@ -1,4 +1,5 @@
 ﻿@model MusicSearch
+<h2>Albums</h2>
 
 @{
     List<int> uniqueAlbumIDs = new List<int>();
@@ -9,9 +10,11 @@
     {
         <p><b>Title:</b> @d.album.title</p>
         <img src="@d.album.cover" alt="@d.album.cover" />
-        <form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>View TrackList</button></form>
+        <a asp-area="" asp-controller="Music" asp-action="AlbumSearchLink" asp-route-albumId="@d.album.id">View TrackList</a>
+      
         <hr />
         uniqueAlbumIDs.Add(d.album.id);
+
     }
   @*  <a asp-controller="Music" asp-action="GetAlbumDetail" asp-route-id="@d.album.id">*@
         }
