@@ -1,5 +1,6 @@
 ﻿@model MusicSearch
 <h2>Albums</h2>
+<hr>
 <style>
     body {
         background-color: #BFE7DC;
@@ -69,16 +70,10 @@
         </tr>
     }
 </table>
-@*<p>Length of Datum data: @Model.data.Length </p>
-    <p>Unique Albums in data: @uniqueAlbumIDs.Count </p>
-    <p>
-        @if (Model.prev != null)
-        {
-            <a href="@Model.prev">&larr; Prev</a>
-        }
-        |
-        @if (Model.next != null)
-        {
-            <a href="@Model.next">Next &rarr;</a>
-        }
-    </p>*@
+@if (uniqueAlbumIDs.Count == 0)
+{
+    <h2>Is @ViewBag.Album even real?!?</h2>
+    <img src="~/lib/spongebob.jpg" width="300" />
+    <br>
+    <a asp-controller="home" asp-action="index">I'm sorry, I want to search again</a>
+}
