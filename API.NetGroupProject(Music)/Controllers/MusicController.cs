@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
         private readonly MusicDAL _dal;
         private readonly MusicProjectDbContext _db;
+        private MusicProjectDbContext db = new MusicProjectDbContext();
         public MusicController(MusicDAL dal, MusicProjectDbContext db)
         {
             _dal = dal;
@@ -74,51 +76,21 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
 
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveFavorite(int? Id)
-
-        {
-            Favorites favoriteItem = new Favorites();
-             favoriteItem = await _db.Favorites.FindAsync(Id);
-            _db.Favorites.Remove(favoriteItem);
-            await _db.SaveChangesAsync();
-            return RedirectToAction();
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
-        {
-            using (var context = new MusicProjectDbContext())
-            {
-                var data = context.Favorites.FirstOrDefault(x => x.Id == id);
-                if (data != null)
-                {
-                    context.Favorites.Remove(data);
-                    context.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            else
-                {
-                    return View("Delete");
-                }
-            }
-        
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            Favorites favorites = _db.Favorites.Find(id);
-            _db.Favorites.Remove(favorites);
-            _db.SaveChanges();
-           
-            return RedirectToAction("Index");
-        }
 
 
         [HttpPost]
+
+
+        public async Task<IActionResult> RemoveFavorite(int id)
+
+        {
+            var favoriteItem = await db.Favorites.FindAsync(id);
+            db.Favorites.Remove(favoriteItem);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorites));
+        }
+
 
 
 
@@ -133,21 +105,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
         }
 
-        //[HttpPost]
-        //public IActionResult AddFavorite (Favorites f)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.Favorites.Add(f);
-        //        _db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Music/Favorites");
-        //}
-        /* public IEnumerable<Tracks> MusicSearch()
-         {
-             return View(Tracks.ToList(); 
-         }
-        */
+     
         [HttpPost]
         public async Task<IActionResult> GetSearchAsync(MusicSearch model)
         {
@@ -164,12 +122,12 @@ namespace API.NetGroupProject_Music_.Controllers
             return View("GetSearch");
         }
         [HttpPost]
-        public IActionResult AddFavorite (string album, string artist, string artistid, string albumid, string trackid)
+        public IActionResult AddFavorite (string album, string artist, string artistid, string albumid)
         {
-            Favorites adding = new Favorites(album, artist, artistid, albumid, trackid);
+            Favorites adding = new Favorites(album, artist, artistid, albumid);
             _db.Favorites.Add(adding);
             _db.SaveChanges();
-            return RedirectToAction(nameof(Favorites));
+            return RedirectToAction("Favorites");
         }
 
         //}

@@ -144,9 +144,6 @@ namespace API.NetGroupProject_Music_.Models
 
                 entity.Property(e => e.ArtistId).HasMaxLength(50);
 
-                entity.Property(e => e.Track).HasMaxLength(50);
-
-                entity.Property(e => e.TrackId).HasMaxLength(50);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.InverseUser)
