@@ -1,4 +1,5 @@
 ﻿@model MusicSearch
+<h2>Albums</h2>
 
     <style>
         body {
@@ -63,7 +64,7 @@
                 <img src="@d.album.cover" alt="@d.album.cover" />
             </td>
             <td>
-                <form asp-area="" asp-controller="Music" asp-action="AlbumSearch" asp-route-albumId="@d.album.id"><button>View TrackList</button></form>
+                <a asp-area="" asp-controller="Music" asp-action="AlbumSearchLink" asp-route-albumId="@d.album.id">View TrackList</a>
             </td>
             uniqueAlbumIDs.Add(d.album.id);
         }

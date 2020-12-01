@@ -29,6 +29,7 @@ namespace API.NetGroupProject_Music_.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=MusicProjectDb;Trusted_Connection=True;");
             }
         }
@@ -137,22 +138,32 @@ namespace API.NetGroupProject_Music_.Models
             {
                 entity.Property(e => e.Album).HasMaxLength(60);
 
-                entity.Property(e => e.Artist).HasMaxLength(50);
-
                 entity.Property(e => e.AlbumId).HasMaxLength(50);
+
+                entity.Property(e => e.Artist).HasMaxLength(50);
 
                 entity.Property(e => e.ArtistId).HasMaxLength(50);
 
-                entity.Property(e => e.TrackId).HasMaxLength(50);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.InverseUser)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Favorites__UserI__76969D2E");
             });
 
             modelBuilder.Entity<UserFavorites>(entity =>
             {
                 entity.Property(e => e.Album).HasMaxLength(60);
 
+                entity.Property(e => e.AlbumId).HasMaxLength(50);
+
                 entity.Property(e => e.Artist).HasMaxLength(50);
 
+                entity.Property(e => e.ArtistId).HasMaxLength(50);
+
                 entity.Property(e => e.Track).HasMaxLength(50);
+
+                entity.Property(e => e.TrackId).HasMaxLength(50);
 
                 entity.HasOne(d => d.IdNetUsersNavigation)
                     .WithMany(p => p.InverseIdNetUsersNavigation)

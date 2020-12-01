@@ -85,7 +85,15 @@
                     <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Card_heart.svg" width="25" height="25" />
                 </svg>
             </a>
-            <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
+            <a asp-area="" asp-controller="Music" asp-action="MusicSearchLink" asp-route-data="@d.artist.name" asp-route-SearchBy="artist">@d.artist.name</a>
+            <form asp-controller="Music" asp-action="AddFavorite" method="post">
+                <input type="hidden" name="album" value="@d.title" />
+                <input type="hidden" name="artist" value="@d.artist.name" />
+                <input type="hidden" name="albumid" value="@Model.title" />
+                <input type="hidden" name="albumid" value="@User.Identity" />
+
+                <input type="submit" name="Datum" value="Add to Favorites" />
+            </form>
         </td>
     </tr>
     }
