@@ -1,9 +1,12 @@
-﻿
+﻿@model List<Favorites>
+
+@*Do an orderbyname? *@
+    
 
     
-    
-@model List<Favorites>
+
     <h2>Favorites</h2>
+<div>
 <table>
     <tr>
         <th>ID</th>
@@ -27,12 +30,21 @@
                 <p>@f.AlbumId</p>
             </td>
             <td>
-                <form asp-controller="Music" asp-action="RemoveFavorite">
-                    <input type="submit" value="Remove" />
+                <form asp-controller="Music/Delete" asp-action="Delete" method="post">
+
+                    <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@f.Id" />
+                    <button type="submit"
+                            name="id"
+                            value="@f.Id"
+                            form="remove"
+                            asp-page-handler="RemoveFavorite"
+                            class="btn btn-danger btn-rounded btn-sm my-0">
+                        Remove
+                    </button>
                 </form>
             </td>
         </tr>
     }
 </table>
-
+    </div>
 ﻿

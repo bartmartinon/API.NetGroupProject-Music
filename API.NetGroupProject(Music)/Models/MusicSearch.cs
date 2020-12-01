@@ -38,6 +38,10 @@ namespace API.NetGroupProject_Music_.Models
         public Artist artist { get; set; }
         public Album album { get; set; }
         public string type { get; set; } //track
+        public int? UserId { get; set; }
+        public virtual Favorites User { get; set; }
+        public virtual ICollection<Favorites> InverseUser { get; set; }
+
     }
 
     public class Artist

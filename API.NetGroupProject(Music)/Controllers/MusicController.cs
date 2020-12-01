@@ -54,6 +54,7 @@ namespace API.NetGroupProject_Music_.Controllers
         public async Task<IActionResult> Index()
         {
             //var result = await _dal.GetSearchAsync();
+           
             return View();
         }
 
@@ -72,16 +73,48 @@ namespace API.NetGroupProject_Music_.Controllers
 
 
 
+
+
         [HttpPost]
-
-
-        public async Task<IActionResult> RemoveFavorite(int id)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveFavorite(int? Id)
 
         {
-            var favoriteItem = await _db.Favorites.FindAsync(id + 1);
+            Favorites favoriteItem = new Favorites();
+             favoriteItem = await _db.Favorites.FindAsync(Id);
             _db.Favorites.Remove(favoriteItem);
             await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Favorites));
+            return RedirectToAction();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            using (var context = new MusicProjectDbContext())
+            {
+                var data = context.Favorites.FirstOrDefault(x => x.Id == id);
+                if (data != null)
+                {
+                    context.Favorites.Remove(data);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            else
+                {
+                    return View("Delete");
+                }
+            }
+        
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Favorites favorites = _db.Favorites.Find(id);
+            _db.Favorites.Remove(favorites);
+            _db.SaveChanges();
+           
+            return RedirectToAction("Index");
         }
 
 
