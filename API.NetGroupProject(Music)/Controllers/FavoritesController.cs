@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API.NetGroupProject_Music_.Controllers
 {
-    [Authorize]
+ 
     public class FavoritesController : Controller
     {
         private readonly MusicProjectDbContext _context;

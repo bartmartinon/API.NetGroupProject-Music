@@ -21,7 +21,7 @@ namespace API.NetGroupProject_Music_.Models
         [MaxLength(50, ErrorMessage = "Artist Id is too long")]
         public string ArtistId { get; set; }
         [MaxLength(50, ErrorMessage = "Album Id is too long")]
-        public string AlbumId { get; set; }
+        public string Title { get; set; }
         [MaxLength(50, ErrorMessage = "Track Id too long")]
         public string Album { get; set; }
         [StringLength(60, ErrorMessage = "Artist is too long.")]
@@ -32,12 +32,12 @@ namespace API.NetGroupProject_Music_.Models
         public virtual ICollection<Favorites> InverseUser { get; set; }
 
         // public Favorites() { }
-        public Favorites(string album, string artist, string artistid, string albumid)
+        public Favorites(string album, string artist, string artistid, string title)
         {
             Album = album;
             Artist = artist;
             ArtistId = artistid;
-            AlbumId = albumid;
+            Title = title;
         }
     }
 

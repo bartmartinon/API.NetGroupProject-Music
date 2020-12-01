@@ -87,10 +87,10 @@ namespace API.NetGroupProject_Music_.Controllers
 
         }
      
-        [HttpPost]
-        public IActionResult AddFavorite (string album, string artist, string artistid, string albumid)
+     
+        public IActionResult AddFavorite (string album, string artist, string title, string albumid)
         {
-            Favorites adding = new Favorites(album, artist, artistid, albumid);
+            Favorites adding = new Favorites(album, artist, title, albumid);
             _db.Favorites.Add(adding);
             _db.SaveChanges();
             return RedirectToAction("Index", "Favorites");

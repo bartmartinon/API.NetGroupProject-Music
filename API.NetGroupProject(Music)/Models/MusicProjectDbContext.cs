@@ -138,7 +138,7 @@ namespace API.NetGroupProject_Music_.Models
             {
                 entity.Property(e => e.Album).HasMaxLength(60);
 
-                entity.Property(e => e.AlbumId).HasMaxLength(50);
+                entity.Property(e => e.Title).HasMaxLength(50);
 
                 entity.Property(e => e.Artist).HasMaxLength(50);
 
