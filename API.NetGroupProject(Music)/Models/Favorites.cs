@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD
 using Xunit;
-=======
->>>>>>> Bart
+
 
 namespace API.NetGroupProject_Music_.Models
 {

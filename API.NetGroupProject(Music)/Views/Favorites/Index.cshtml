@@ -5,7 +5,61 @@
 }
 
 <h1>Index</h1>
+<head>
+    <style>
+        body {
+            background-image: url("https://www.thewanderinglens.com/wp-content/uploads/2018/12/HEADER-Tokyo-Photography-Locations-A-Photographers-Guide-to-Photo-Spots-in-Tokyo.jpg");
+        }
 
+        h2 {
+            text-align: center;
+        }
+
+        #favorites {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #site-footer {
+            background: #ddd;
+        }
+
+        .button {
+            background-color: #CC99FF;
+        }
+
+        #favorites {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+
+            #favorites td, #favorites th {
+                background-color: #CCF5FF;
+                border: 1px solid black;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                text-align: center;
+            }
+
+            #favorites tr:nth-child(even) {
+                background-color: #CCF5FF;
+                text-align: center;
+            }
+
+            #favorites tr:hover {
+                background-color: #ddd;
+            }
+
+            #favorites th {
+                padding-top: 4px;
+                padding-bottom: 4px;
+                text-align: center;
+                background-color: #CC99FF;
+                color: black;
+            }
+    </style>
+</head>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
