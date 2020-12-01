@@ -36,7 +36,6 @@ namespace API.NetGroupProject_Music_.Models
         {
             var response = await _client.GetAsync($"search?q={artist}");
 
-            //var response = await _client.GetAsync($"album/{album}");
             var result = await response.Content.ReadAsAsync<MusicSearch>();
 
             return result;
@@ -78,18 +77,6 @@ namespace API.NetGroupProject_Music_.Models
             return result;
 
         }
-
-        //public async Task<List<MusicTrack>> GetTrackListAsync(int id)
-        //{
-        //    var response = await _client.GetAsync($"album/{id}/tracks");
-        //    var jsonData = await response.Content.ReadAsStringAsync();
-
-        //    List<MusicTrack> musicTracks = JsonSerializer.Deserialize<List<MusicTrack>>(jsonData);
-
-        //    return musicTracks;
-
-        //}
-
         public async Task<MusicSearch> GetTrackListAsync(int id )
         {
             var response = await _client.GetAsync($"album/{id}/tracks");
