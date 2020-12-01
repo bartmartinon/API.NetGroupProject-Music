@@ -127,10 +127,10 @@ namespace API.NetGroupProject_Music_.Controllers
             Favorites adding = new Favorites(album, artist, artistid, albumid);
             _db.Favorites.Add(adding);
             _db.SaveChanges();
-            return RedirectToAction("Favorites");
+            return RedirectToAction("Index", "Favorites");
         }
 
-        //}
+        
 
         public async Task<IActionResult> MusicSearchResultsAsync(string data)
         {
