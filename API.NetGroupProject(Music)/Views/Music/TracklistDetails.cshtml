@@ -1,44 +1,100 @@
 ﻿@model AlbumSearch
-@{
 
+<style>
+    body {
+        background-color: #BFE7DC;
+    }
+
+    table {
+        border-collapse: separate;
+        width: 100%;
+    }
+
+    td {
+        background-color: white;
+        border-bottom: solid 2px #10909A;
+        border-top: solid 2px #10909A;
+        box-shadow: 1px 1px 1px #999;
+        padding: 2px;
+        width: 25%;
+    }
+
+    tr td:first-child {
+        border-left: solid 2px #10909A;
+    }
+
+    tr td:last-child {
+        border-right: solid 2px #10909A;
+    }
+
+    tr:first-child td:first-child {
+
+        border-top-left-radius: 10px;
+    }
+
+    tr:first-child td:last-child {
+        border-top-right-radius: 10px;
+    }
+
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+</style>
+
+@{
     string album = Model.title;
 }
 
-@foreach (Datum1 d in Model.tracks.data)
-{
-    <p><b>Title:</b> @d.title</p>
+<table>
+    @foreach (Datum1 d in Model.tracks.data)
     {
-        int minutes = d.duration / 60;
-        int seconds = d.duration - (minutes * 60);
-        string length = "" + minutes + ":";
-        if (seconds < 10)
-        {
-            length = length + "0" + seconds;
-        }
-        else
-        {
-            length = length + seconds;
-        }
-        <p><b>Length:</b> @length</p>
+    <tr>
+        <td>
+            <p><b>Title:</b> @d.title</p>
+            @{
+                int minutes = d.duration / 60;
+                int seconds = d.duration - (minutes * 60);
+                string length = "" + minutes + ":";
+                if (seconds < 10)
+                {
+                    length = length + "0" + seconds;
+                }
+                else
+                {
+                    length = length + seconds;
+                }
+                <p><b>Length:</b> @length</p>
+            }
+        </td>
+        <td>
+            <p><b>Artist: </b> @d.artist.name</p>
+            <p><b>Album: </b> @album </p>
+        </td>
+        <td>
+            <audio controls>
+                <source src="@d.preview" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <a asp-controller="Music" asp-action="AddFavoriteLink" asp-route-album="@album" asp-route-artist="@d.artist.name" asp-route-artistid="@d.artist.id" asp-route-albumid="@Model.id" asp-route-trackid="@d.id">
+                <svg width="25" height="25">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Card_heart.svg" width="25" height="25" />
+                </svg>
+            </a>
+            <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
+            <form asp-controller="Music" asp-action="AddFavorite" method="post">
+                <input type="hidden" name="album" value="@d.title" />
+                <input type="hidden" name="artist" value="@d.artist.name" />
+                <input type="hidden" name="albumid" value="@Model.title" />
+                <input type="hidden" name="albumid" value="@User.Identity" />
+
+                <input type="submit" name="Datum" value="Add to Favorites" />
+            </form>
+        </td>
+    </tr>
     }
-    <audio controls>
-        <source src="@d.preview" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <p>Artist: @d.artist.name</p>
-    <form asp-area="" asp-controller="Music" asp-action="MusicSearch" asp-route-data="@d.artist.name" asp-route-SearchBy="artist"><button>Search Artist</button></form>
-    <p>Album: @album </p>
-
-    @*<button>Add <span style="font-size:100%;color:red;">&#10084;</span> to favorites!</button>*@
-<form asp-controller="Music" asp-action="AddFavorite" method="post">
-    <input type="hidden" name="album" value="@d.title" />
-    <input type="hidden" name="artist" value="@d.artist.name" />
-    <input type="hidden" name="albumid" value="@Model.title" />
-    <input type="hidden" name="albumid" value="@User.Identity" />
-
-    <input type="submit" name="Datum" value="Add to Favorites" />
-</form>
-
-    <hr>
-}
+</table>

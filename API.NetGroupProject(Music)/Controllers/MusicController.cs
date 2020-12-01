@@ -60,8 +60,6 @@ namespace API.NetGroupProject_Music_.Controllers
             return View();
         }
 
-
-
         public IActionResult Favorites()
         {
             return View(_db.Favorites.ToList());
@@ -75,7 +73,6 @@ namespace API.NetGroupProject_Music_.Controllers
 
         [HttpPost]
         public async Task<IActionResult> RemoveFavorite(int id)
-
         {
             var favoriteItem = await db.Favorites.FindAsync(id);
             db.Favorites.Remove(favoriteItem);
