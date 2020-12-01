@@ -39,7 +39,7 @@ namespace API.NetGroupProject_Music_.Controllers
 
                 var result = await _dal.GetMusicAsync(data);
 
-                return View("showalbums", result);
+                return View("MusicSearchResultsAlbum", result);
             }
             if (SearchBy == "song")
             {
