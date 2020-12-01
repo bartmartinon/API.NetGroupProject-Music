@@ -1,13 +1,18 @@
-﻿@model List<Favorites>
-﻿
+﻿@model IEnumerable<API.NetGroupProject_Music_.Models.Favorites>
+
+@*Do an orderbyname? *@
     
+
+    
+
     <h2>Favorites</h2>
+<div>
 <table>
     <tr>
         <th>ID</th>
         <th>Artist</th>
         <th>Album</th>
-        <th>Track</th>
+        <th>Genre</th>
     </tr>
     @foreach(Favorites f in Model)
     {
@@ -22,17 +27,24 @@
                 <p>@f.Album</p>
             </td>
             <td>
-                <p>@f.Track</p>
+                <p>@f.AlbumId</p>
             </td>
             <td>
-                <form asp-controller="Music" asp-action="RemoveFavorite">
-                    <input type="submit" value="Remove" />
+                <form asp-controller="Music/Delete" asp-action="Delete" method="post">
+
+                    <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@User.Identity" />
+                    <button type="submit"
+                            name="id"
+                            value="@f.Id"
+                            form="remove"
+                            asp-page-handler="RemoveFavorite"
+                            class="btn btn-danger btn-rounded btn-sm my-0">
+                        Remove
+                    </button>
                 </form>
             </td>
         </tr>
     }
 </table>
-
-<form asp-controller="Music" asp-action="AddFavorite">
-    <input type="submit" value="Add" />
-</form>
+    </div>
+﻿
